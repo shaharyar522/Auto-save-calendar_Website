@@ -1,0 +1,158 @@
+
+/* google webFonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+
+/* globally target */
+*{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: "Open Sans", serif;
+}
+
+/* navbar */
+.navbar {
+  height: 80px; /* Set fixed height */
+  background-color: #92b8d4 !important; 
+}
+.navbar a{
+  color: white !important;
+}
+
+.navbar-brand img {
+  height: 65px; 
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Responsive: Move right-side items inside the navbar menu */
+@media (max-width: 992px) {
+  .navbar {
+    height: auto; 
+  }
+
+  .navbar-collapse {
+    background: #92b8d4 !important; ; 
+    color: black;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-nav {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-item {
+    padding: 8px 0;
+  }
+
+  /* Move right-side items inside the toggle menu */
+  .right-items {
+    flex-direction: column; /* Stack items vertically */
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .right-items i,
+  .right-items img,
+  .right-items .dropdown {
+    margin-bottom: 10px;
+  }
+
+  .profile-img {
+    width: 35px;
+    height: 35px;
+  }
+}
+/* -----Hero---- */
+.hero {
+  position: relative;
+  height: 100vh;
+  background: url('./images/Hero-bg.png') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  color: white;
+  padding: 50px;
+}
+.overlay {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.calendar-card {
+  background: #c7ebca;
+  border-radius: 15px;
+  padding: 15px;
+  width: 320px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  right: 111px;
+  top: 58%;
+  transform: translateY(-50%);
+}
+
+@media screen and (max-width:768px) {
+  .calendar-card{
+    right: 30px;
+
+  }
+  
+}
+.calendar-header {
+  text-align: center;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  gap: 5px;
+}
+.day {
+  padding: 5px;
+  border-radius: 5px;
+}
+.selected {
+  background-color: #004aad;
+  color: white;
+}
+.highlighted {
+  background-color: #ffcc00;
+}
+.event-box {
+  margin-top: 10px;
+  padding: 10px;
+  background: white;
+  color: black;
+  border-radius: 8px;
+}
+.day-names {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: bold;
+  margin-top: 5px;
+}
