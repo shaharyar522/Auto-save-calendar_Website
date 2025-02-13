@@ -119,6 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
+
   // Doughnut Chart
   const ctxDoughnut = document.getElementById('doughnutChart').getContext('2d');
   new Chart(ctxDoughnut, {

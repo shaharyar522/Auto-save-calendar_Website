@@ -226,3 +226,36 @@
   font-weight: bold;
 }
 
+
+/* candidate section */
+.candidate-section{
+  background: url('./images/bg-candidate\ 1.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.candidate-btn1{
+  width: 191px;
+  height: 44px;
+  background-color: #00B475;
+  color: white;
+  border: none;
+  border-radius: 22px;
+}
+.candidate-btn1:hover{
+  background-color: #00B475;
+  color: white;
+  transition: all 2s;
+}
+.candidate-serchBtn{
+  width: 200px;
+  height: 44px;
+  color: #4E4E4E;
+  border-radius: 22px;
+  border: 1px solid black ;
+}
+.candidate-serchBtn:hover{
+  border: 1px solid black ;
+}
+
+
