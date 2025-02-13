@@ -128,7 +128,7 @@
 }
 
 .calendar-card {
-  background: #c7ebca;
+  background: #C7EBC9;
   border-radius: 15px;
   padding: 15px;
   width: 320px;
@@ -137,6 +137,7 @@
   right: 111px;
   top: 58%;
   transform: translateY(-50%);
+  opacity: 100;
 }
 
 @media screen and (max-width:768px) {
@@ -167,6 +168,21 @@
 }
 .highlighted {
   background-color: #ffcc00;
+  color: white !important;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  
+}
+.highlighted-day {
+  background-color: lightblue;
+  font-weight: bold;
+  padding: 2px;
+  border-radius: 5px;
 }
 .event-box {
   margin-top: 10px;
@@ -193,17 +209,17 @@
  
 }
 #doughnutChart {
-  width: 90%; /* Makes it responsive */
-  height: 300px !important; /* Set a fixed height */
+  width: 90%;
+  height: 300px !important;
   display: block;
 }
 
 
 /* dashboard chart */
-.barchartSection{
-  background: linear-gradient(to bottom left, #FFAB13 0%, #00B5B2 51%, #00B475 100%);
-
+.barchartSection {
+  background: linear-gradient(to bottom left, rgba(255, 171, 19, 0.5) 0%, rgba(0, 181, 178, 0.6) 51%, rgba(0, 180, 117, 0.6) 100%);
 }
+
 .dashboard-container {
   background: white;
   border-radius: 10px;
@@ -234,10 +250,14 @@
   background-size: cover;
   background-position: center;
 }
+.main{
+  background-color: white;
+  border-radius: 10px;
+}
 .candidate-btn1{
   width: 191px;
   height: 44px;
-  background-color: #00B475;
+  background-color: #00B475 !important;
   color: white;
   border: none;
   border-radius: 22px;
@@ -257,5 +277,66 @@
 .candidate-serchBtn:hover{
   border: 1px solid black ;
 }
+.table-icons{
+  border: 1px solid #3F8045;
+  padding: 6px;
+  transition: borer-color ease-in-out;
+  border-radius: 50%;
+  font-size: 11px;
+}
 
+
+/* table css */
+.table-container {
+  padding: 20px;
+  /* background: #fff; */
+  border-radius: 8px;
+  /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
+}
+.table thead {
+  background-color: #009879;
+  color: white;
+}
+.pagination .page-item.active .page-link {
+  background-color: #009879;
+  border-color: #009879;
+}
+
+
+/* footer css */
+.social-links {
+  display: flex; 
+  gap: 8px;
+  flex-wrap: nowrap; 
+}
+
+.social-links i {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: white;
+  color: black !important;
+  display: flex;  
+  align-items: center;
+  justify-content: center;
+  margin: 3px 0; 
+  transition: background-color 0.5s ease-in-out; 
+}
+.social-links i:hover{
+  background-color: lightgrey !important;
+}
+.social-links a{
+  text-decoration: none;
+}
+
+
+.quick-links span{
+  display: block;
+  padding: 3px;
+  color: #FFFFFF;
+  font-size: 13px;
+}
+.quick-links a{
+  text-decoration: none !important;
+}
 

@@ -84,7 +84,16 @@
               </div>
           </div>
           <div class="day-names">
-              <div >Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div>
+              <!-- <div >Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div> -->
+
+                            <div class="weekday">Sun</div>
+              <div class="weekday">Mon</div>
+              <div class="weekday">Tue</div>
+              <div class="weekday">Wed</div>
+              <div class="weekday">Thu</div>
+              <div class="weekday">Fri</div>
+              <div class="weekday">Sat</div>
+
           </div>
           <div class="calendar-days" id="calendarDays"></div>
           <div class="event-box" id="eventDetails">
@@ -139,36 +148,144 @@
 <!-- end -->
 
 <!-- candidate section -->
- <section class="candidate-section">
+<section class="candidate-section p-4">
+  <div class="container">
+    <div class="row justify-content-center"> <!-- Added row here -->
+      <div class="col-12"> <!-- Added column wrapper for better responsiveness -->
+        <div class="main p-3" style="  margin-top: 50px;">
+          <div class="row">
+            <div class="col-md-6">
+              <h3 class="fw-bold mt-4 ms-2" style="color: #4E4E4E;">Necessidades</h3>
+            </div>
+            <div class="col-md-6">
+              <div class="candidate-btn mt-4 me-3 d-flex justify-content-end">
+                <button type="button" class="btn btn-primary candidate-btn1">Criar Necessidade</button>
+                <button type="button" class="btn btn-outline-light ms-1 candidate-serchBtn">
+                  <i class="fa-solid fa-magnifying-glass"></i> Search ID Task
+                </button>
+              </div>
+            </div>
+          </div>
+            <!-- table -->
+          <div class="row">
+            <div class="table-container">
+              <div class="d-flex align-items-center mb-3">
+                <i class="fa-solid fa-chevron-left me-3 table-icons"></i>
+                <span style="color: #3F8045;"><i class="fa-solid fa-calendar-days"></i>  &nbsp;Janeiro 2024</span>
+                <i class="fa-solid fa-chevron-right ms-3 table-icons"></i>
+              </div>
+              <table class="table table-hover text-center table-responsive">
+                <thead>
+                  <tr>
+                    <th>Company</th>
+                    <th>Service</th>
+                    <th>Subject</th>
+                    <th>Category</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>Assigned To</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Lorem Ipsum</td>
+                    <td>Lorem Ipsum</td>
+                    <td>Lorem Ipsum</td>
+                    <td>Lorem Ipsum</td>
+                    <td>1/19/2024</td>
+                    <td>Hold</td>
+                    <td>Lorem Ipsum</td>
+                  </tr>
+                  <tr>
+                    <td>Lorem Ipsum</td>
+                    <td>Lorem Ipsum</td>
+                    <td>Lorem Ipsum</td>
+                    <td>Lorem Ipsum</td>
+                    <td>1/20/2024</td>
+                    <td>Hold</td>
+                    <td>Lorem Ipsum</td>
+                  </tr>
+                  <tr>
+                    <td>Lorem Ipsum</td>
+                    <td>Lorem Ipsum</td>
+                    <td>Lorem Ipsum</td>
+                    <td>Lorem Ipsum</td>
+                    <td>1/21/2024</td>
+                    <td>&#x2714;</td>
+                    <td>Lorem Ipsum</td>
+                  </tr>
+                  <tr>
+                    <td>Lorem Ipsum</td>
+                    <td>Lorem Ipsum</td>
+                    <td>Lorem Ipsum</td>
+                    <td>Lorem Ipsum</td>
+                    <td>1/22/2024</td>
+                    <td>&#x2714;</td>
+                    <td>Lorem Ipsum</td>
+                  </tr>
+                  <tr>
+                    <td>Lorem Ipsum</td>
+                    <td>Lorem Ipsum</td>
+                    <td>Lorem Ipsum</td>
+                    <td>Lorem Ipsum</td>
+                    <td>1/30/2024</td>
+                    <td>Hold</td>
+                    <td>Lorem Ipsum</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="d-flex justify-content-between align-items-center">
+                <p class="mb-0 fw-bold" style="color: #3F8045;">8 - 36 Tarefas</p>
+                <nav>
+                  <ul class="pagination">
+                    <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of .main -->
+      </div> <!-- End of .col-12 -->
+    </div> <!-- End of .row -->
+  </div>
+</section>
+
+<!-- footer section -->
+
+<footer style="background-color: #172629;">
   <div class="container">
     <div class="row">
-      <div class="candidate-headings d-flex justify-content-between mt-5"  style="background-color: white; border-radius: 10px;" >
-        <h3 class="fw-bold mt-4" style="color: #4E4E4E;">Necessidades</h3>
-        <div class="candidate-btn mt-4 me-3">
-          <button type="button" class="btn btn-light candidate-btn1"> Criar Necessidade</button>
-          <button type="button" class="btn btn-outline-light ms-1 candidate-serchBtn"><i class="fa-solid fa-magnifying-glass"></i> Search ID Task</button>
+      <div class="col-md-4 mt-5">
+        <h3 class="fw-bold" style="color: white;">contacte-nos</h3>
+       
+      </div>
+      <div class="col-md-8 mt-5">
+        <div class="quick-links">
+         <a href=""> <span>TERMOS E CONDIÇÕES</span></a>
+         <a href=""> <span>POLÍTICA DE PRIVACIDADE</span></a>
+         <a href=""> <span>POLÍTICA DE COOKIES</span></a>
         </div>
       </div>
-   
-
+      <div class="row">
+        <div class="col-12">
+          <div class="social-links">
+           <a href=""> <i class="fa-brands fa-youtube"></i></a>
+           <a href=""><i class="fa-brands fa-facebook"></i></a> 
+           <a href=""> <i class="fa-brands fa-linkedin"></i></a>
+           <a href=""> <i class="fa-brands fa-twitter"></i></a>
+           <a href=""> <i class="fa-brands fa-instagram"></i></a>
+            
+          </div>
+        </div>
+      </div>
     </div>
   </div>
- </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</footer>
 
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

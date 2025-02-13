@@ -6,13 +6,24 @@ let currentDate = new Date();
 function renderCalendar() {
   const monthYear = document.getElementById("monthYear");
   const calendarDays = document.getElementById("calendarDays");
-  calendarDays.innerHTML = "";
+  const weekDays = document.querySelectorAll(".weekday"); // Select weekday headers (e.g., Sunday, Monday, etc.)
+
+  calendarDays.innerHTML = ""; // Clear previous calendar
 
   monthYear.innerText = currentDate.toLocaleString('default', { month: 'long', year: 'numeric' });
 
   let firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
   let lastDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
-  let today = new Date(); // Get today's actual date
+  let today = new Date();
+  let todayDayIndex = today.getDay(); // Get index of today's weekday (0 = Sunday, 6 = Saturday)
+
+  // Reset weekday highlights
+  weekDays.forEach(day => day.classList.remove("highlighted-day"));
+
+  // If today is in the displayed month, highlight its weekday
+  if (currentDate.getMonth() === today.getMonth() && currentDate.getFullYear() === today.getFullYear()) {
+    weekDays[todayDayIndex].classList.add("highlighted-day");
+  }
 
   // Create empty cells for alignment
   for (let i = 0; i < firstDay; i++) {
@@ -21,13 +32,13 @@ function renderCalendar() {
     calendarDays.appendChild(emptyCell);
   }
 
-  // Generate days
+  // Generate day cells for each day in the month
   for (let i = 1; i <= lastDate; i++) {
     let dayCell = document.createElement("div");
     dayCell.classList.add("day");
     dayCell.innerText = i;
 
-    // Highlight the current day only if it's in the displayed month
+    // Highlight the current day if it's today's date
     if (
       i === today.getDate() &&
       currentDate.getMonth() === today.getMonth() &&
@@ -46,6 +57,7 @@ function changeMonth(direction) {
 }
 
 renderCalendar();
+
 
 
 // bar chart
