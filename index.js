@@ -53,7 +53,15 @@ renderCalendar();
 document.addEventListener("DOMContentLoaded", function () {
   // Bar Chart
   const ctxBar = document.getElementById('barChart').getContext('2d');
-  new Chart(ctxBar, {
+
+  function getPadding() {
+    return {
+      left: window.innerWidth < 768 ? 10 : 180,  // Adjust left padding based on screen size
+      right: window.innerWidth < 768 ? 10 : 40   // Adjust right padding dynamically
+    };
+  }
+
+  const barChart = new Chart(ctxBar, {
     type: 'bar',
     data: {
       labels: ['Em atraso', 'A terminar', 'Concluído'],
@@ -61,56 +69,54 @@ document.addEventListener("DOMContentLoaded", function () {
         label: 'Tarefas',
         data: [10, 5, 18],
         backgroundColor: ['#1CC48F', '#23B5A8', '#254EDB'],
-        barPercentage: 0.7,
-        categoryPercentage: 0.9
+        barThickness: 60,
+        maxBarThickness: 80,
+        categoryPercentage: 0.9,
+        barPercentage: 0.9,
+        borderRadius: 5,
       }]
     },
+
     options: {
       responsive: true,
       maintainAspectRatio: true,
       plugins: {
         legend: {
           display: true,
-          position: 'left', // Move legend to the left
+          position: 'left',
           labels: {
-            usePointStyle: false, // Disable default bullet points
-            boxWidth: 15, // Make the squares bigger
-            boxHeight: 15, // Ensure squares are square
-            padding: 10, // Add spacing between items
+            usePointStyle: false,
+            boxWidth: 15,
+            boxHeight: 15,
+            padding: 10,
             font: {
-              size: 10, // Adjust font size
-              weight: 'bold' // Make text bold
+              size: 10,
+              weight: 'bold'
             }
-          },
+          }
         }
       },
       scales: {
         x: {
-          grid: {
-            display: false
-          },
-          ticks: {
-            padding: 10
-          }
+          grid: { display: false },
+          ticks: { padding: 10 },
+          border: { display: false }
         },
         y: {
-          grid: {
-            display: false
-          },
-          ticks: {
-            display: false
-          }
+          grid: { display: false },
+          ticks: { display: false },
+          border: { display: false }
         }
       },
       layout: {
-        padding: {
-          left: 50
-        }
+        padding: getPadding() // Apply dynamic left & right padding
+      },
+      onResize: function (chart) {
+        chart.options.layout.padding = getPadding(); // Update padding on resize
+        chart.update();
       }
     }
   });
-
-
 
 
   // Doughnut Chart
