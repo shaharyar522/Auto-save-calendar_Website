@@ -154,13 +154,12 @@ document.addEventListener("DOMContentLoaded", function () {
             usePointStyle: true, // Use squared bullet points instead of circles
             boxWidth: 10, // Adjust box width for square bullets
             padding: 10, // Adjust padding between items
-
           },
-
         }
       }
     }
   });
+
 
 });
 // end

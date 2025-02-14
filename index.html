@@ -352,23 +352,28 @@ new Chart(ctx, {
     datasets: [{
       data: [2.4, 2.4, 0.4, 3, 1.6, 3.5], 
       borderColor: '#235A9E',
-      labels:'muneebkhan',
       backgroundColor: '#fff',
       borderWidth: 2,
       pointBackgroundColor: ['#00C9A7', '#00C9A7', '#00C9A7', '#00C9A7', '#00C9A7', '#fff'], 
-      pointRadius: [5, 5, 5, 5, 5, 8], 
-      // fill: true
+      pointRadius: [5, 5, 5, 5, 5, 8],
+      label: 'Line Dataset', // Ensure every dataset has a label
     },
     {
       type: 'bar', 
       data: [null, null, null, null, null, 4], 
       backgroundColor: gradient, 
-      barThickness: 50 
+      barThickness: 50,
+      label: 'Bar Dataset', // Ensure every dataset has a label
     }]
   },
   options: {
     responsive: true,
     maintainAspectRatio: true,
+    plugins: {
+      legend: {
+        display: false, // Hides the entire legend
+      }
+    },
     scales: {
       y: {
         beginAtZero: true,
@@ -391,6 +396,7 @@ new Chart(ctx, {
     }
   }
 });
+
 
 
   </script>
