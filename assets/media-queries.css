@@ -1,0 +1,64 @@
+/* Responsive: Move right-side items inside the navbar menu */
+@media (max-width: 992px) {
+  .navbar {
+    height: auto; 
+  }
+
+  .navbar-collapse {
+    background: #92b8d4 !important; ; 
+    /* color: black; */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    /* padding: 10px; */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-nav {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-item {
+     padding: 8px 0;
+  }
+
+  /* Move right-side items inside the toggle menu */
+  .right-items {
+    display: flex;
+    justify-content: center;
+    /* flex-direction: row; */
+    text-align: center;
+    margin-top: 5px;
+  }
+
+  .right-items i,
+  .right-items img,
+  .right-items .dropdown {
+    margin-bottom: 10px;
+  }
+
+  .profile-img {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+
+/* for medium screen */
+
+@media screen and (max-width:768px) {
+  .calendar-card{
+    right: 30px;
+
+  }
+  .chart-container{
+    margin-bottom: 20px;
+  }
+  .chart-container h5{
+    text-align: center !important;
+    color: red !important;
+  } 
+}

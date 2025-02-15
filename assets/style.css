@@ -61,53 +61,6 @@
  background-color: #1a90e4;
 }
 
-/* Responsive: Move right-side items inside the navbar menu */
-@media (max-width: 992px) {
-  .navbar {
-    height: auto; 
-  }
-
-  .navbar-collapse {
-    background: #92b8d4 !important; ; 
-    /* color: black; */
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    /* padding: 10px; */
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  }
-
-  .navbar-nav {
-    width: 100%;
-    text-align: center;
-  }
-
-  .nav-item {
-     padding: 8px 0;
-  }
-
-  /* Move right-side items inside the toggle menu */
-  .right-items {
-    display: flex;
-    justify-content: center;
-    /* flex-direction: row; */
-    text-align: center;
-    margin-top: 5px;
-  }
-
-  .right-items i,
-  .right-items img,
-  .right-items .dropdown {
-    margin-bottom: 10px;
-  }
-
-  .profile-img {
-    width: 35px;
-    height: 35px;
-  }
-}
 /* -----Hero---- */
 .hero {
   position: relative;
@@ -140,13 +93,6 @@
   opacity: 100;
 }
 
-@media screen and (max-width:768px) {
-  .calendar-card{
-    right: 30px;
-
-  }
-  
-}
 .calendar-header {
   text-align: center;
   font-weight: bold;
@@ -385,4 +331,110 @@
 .quick-links a{
   text-decoration: none !important;
 }
+
+
+/* step tracker */
+.step-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  width: 96%;
+}
+.step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background: white;
+  font-weight: bold;
+}
+/* 📱 Mobile Screen Adjustments */
+@media (max-width: 768px) {
+  .step-container {
+    flex-direction: column; /* Stack items vertically */
+    gap: 15px; /* Increase spacing */
+  }
+
+  .step {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  .line {
+    width: 5px;
+    height: 50px; 
+  }
+}
+.step.completed {
+  background: #00B475;
+  color: white;
+}
+.line {
+  width: 30px;
+  height: 5px;
+  width: 80px;
+  display: flex;
+  height: 5px;
+  flex: 1;
+  height: 2px;
+  background: #ccc;
+  color: #00B475 !important;
+  position: relative;
+}
+.line span{
+  position: absolute !important;
+  top: -14px !important;
+  bottom: -17px;
+  width: 25 !important;
+  height: 29px;
+  background-color: white;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+}
+.completed + .line {
+  background: #00B475 !important;
+  
+}
+.custom-dropdown{
+  display: flex;
+  align-items: center;
+  justify-content: end !important;
+}
+.custom-dropdown .dropdown-toggle{
+  display: flex !important;
+  align-items: center;
+  width: 279px;
+  height: 44px;
+  background: transparent;
+  border-radius: 24px;
+  border: 1px solid black;
+
+}
+.custom-dropdown .dropdown-toggle:focus{
+  box-shadow: none;
+  outline: none;
+
+}
+.progress-arrow i{
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(0, 180, 117, 0.4); /* 50% opacity */
+  color: #00B475;
+
+  display: flex;  
+  align-items: center;
+  justify-content: center;
+  margin: 3px 0; 
+  transition: background-color 0.5s ease-in-out; 
+  cursor: pointer;
+}
+
 
