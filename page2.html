@@ -120,10 +120,10 @@
         <div class="step" style="border: 2px solid #00B475;"></div>
       </div>
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 mt-3">
           <h6><strong>Apresentação da Proposta</strong></h6>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mt-3">
           <p class="text-muted d-flex justify-content-end">Due date: 31/01/2025</p>
 
           <!-- Custom Dropdown -->
@@ -155,14 +155,226 @@
           </div>
         </div>
       </div>
-
-
-
     </div>
   </div>
+
+  <!-- description section -->
+
+  <section class="description">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="description-label">
+            <label for="description">Descrição</label>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="description-input mt-4">
+            <input type="text" class="form-control" id="description-input">
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="description-label mt-4">
+            <label for="description">Anexar Documentos</label>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="fileUpload-input mt-4 mb-3">
+            <div class="input-border">
+              <input type="file" id="file-input" class="form-control">
+            </div>
+            <label for="file-input" class="upload-label">
+              <i class="fas fa-upload"></i> <!-- FontAwesome Upload Icon -->
+            </label>
+            <span class="fw-bold" style="position: absolute; top: 78%; left: 32%; color: #3F8045; margin-top: -10px;">
+              Clicar para fazer upload <span class="text-muted">ou arrastar e soltar</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- buttons row -->
+      <div class="row">
+        <div class="col-12">
+          <div class="description-sub-button d-flex justify-content-between">
+            <button type="button" class="btn btn-outline p-2" style="border: 1px solid #00B475;"> <span class="me-3"><i
+                  class="fa-solid fa-arrow-left desc-icons"></i></span>Anterior</button>
+            <button type="button" class="btn btn-success p-2"> Anterior <span><i
+                  class="fa-solid fa-arrow-right desc-icons2"></i></span></button>
+          </div>
+        </div>
+      </div>
+      <!-- details row -->
+      <div class="row">
+        <div class="col-12">
+          <div class="details-heading mt-4">
+            <h5 class="fw-bold" style="color: #4E4E4E;">Detalhes da Necessidade</h5>
+          </div>
+        </div>
+      </div>
+
+      <!-- card row -->
+      <div class="row g-5">
+        <div class="col-sm-12 col-md-4 col-lg-2">
+          <div class="card details-card p-2">
+            <div class="card-img d-flex justify-content-center py-3">
+              <img src="./assets/images/Icons/file-text-o.png" alt="">
+            </div>
+            <div class="card-title">
+              <p class="text-center">Manifestação da Necessidade</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-2">
+          <div class="card details-card p-2">
+            <div class="card-img d-flex justify-content-center py-3">
+              <img src="./assets/images/Icons/euro.png" alt="">
+            </div>
+            <div class="card-title">
+              <p class="text-center">Manifestação da Necessidade</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-2">
+          <div class="card details-card p-2">
+            <div class="card-img d-flex justify-content-center py-3">
+              <img src="./assets/images/Icons/tree.png" alt="">
+            </div>
+            <div class="card-title">
+              <p class="text-center">Manifestação da Necessidade</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-2">
+          <div class="card details-card p-2">
+            <div class="card-img d-flex justify-content-center py-3">
+              <img src="./assets/images/Icons/files-o.png" alt="">
+            </div>
+            <div class="card-title">
+              <p class="text-center">Manifestação da Necessidade</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-2">
+          <div class="card details-card p-2">
+            <div class="card-img d-flex justify-content-center py-3">
+              <img src="./assets/images/Icons/briefcase.png" alt="">
+            </div>
+            <div class="card-title">
+              <p class="text-center">Manifestação da Necessidade</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-2">
+          <div class="card details-card p-2">
+            <div class="card-img d-flex justify-content-center py-3">
+              <img src="./assets/images/Icons/area-chart.png" alt="">
+            </div>
+            <div class="card-title">
+              <p class="text-center">Manifestação da Necessidade</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-2">
+          <div class="card details-card p-2">
+            <div class="card-img d-flex justify-content-center py-3">
+              <img src="./assets/images/Icons/paste.png" alt="">
+            </div>
+            <div class="card-title">
+              <p class="text-center">Manifestação da Necessidade</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- table data section -->
+  <section class="data-table">
+    <div class="container">
+      <div class="col-12"> <!-- Added column wrapper for better responsiveness -->
+        <!-- table -->
+        <div class="row">
+          <div class="table-container">
+            <table class="table table-hover text-center table-responsive">
+              <thead class="table-head">
+                <tr>
+                  <th>Editar</th>
+                  <th>Nome da imagem</th>
+                  <th>Observações</th>
+                  <th>Tipo documento</th>
+                  <th>Download</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><i class="fa-solid fa-pen"></i></td>
+                  <td>Lorem Ipsum</td>
+                  <td>Lorem Ipsum</td>
+                  <td>Lorem Ipsum</td>
+                  <td><i class="fa-solid fa-download"></i></td>
+                </tr>
+                <tr>
+                  <td><i class="fa-solid fa-pen"></i></td>
+                  <td>Lorem Ipsum</td>
+                  <td>Lorem Ipsum</td>
+                  <td>Lorem Ipsum</td>
+                  <td><i class="fa-solid fa-download"></i></td>
+                </tr>
+                <tr>
+                  <td><i class="fa-solid fa-pen"></i></td>
+                  <td>Lorem Ipsum</td>
+                  <td>Lorem Ipsum</td>
+                  <td>Lorem Ipsum</td>
+                  <td><i class="fa-solid fa-download"></i></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div> <!-- End of .col-12 -->
+    </div>
+  </section>
+
+  <!-- second table section -->
+  <section class="second-table">
+    <div class="container">
+      <div class="col-12"> <!-- Added column wrapper for better responsiveness -->
+        <!-- table -->
+        <div class="row">
+          <div class="table-container">
+            <table class="table table-hover text-center table-responsive">
+              <thead class="table-head">
+                <tr>
+                  <th style="width: 120px;">Estado</th>
+                  <th>Nº Documento Financeiro</th>
+                  <th>Valor do Documento Financeiro</th>
+                  <th>Data de Entrada</th>
+                  <th>Data de Início</th>
+                  <th>Nº Compromisso</th>
+                  <th style="width: 120px;">Valor</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>lorem ipsum</td>
+                  <td>Lorem Ipsum</td>
+                  <td>Lorem Ipsum</td>
+                  <td>Lorem Ipsum</td>
+                  <td>Lorem Ipsum</td>
+                  <td>Lorem Ipsum</td>
+                  <td>Lorem Ipsum</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div> <!-- End of .col-12 -->
+    </div>
+  </section>
   <!-- footer section -->
 
-  <footer style="background-color: #172629;">
+  <footer style=" background-color: #172629;">
     <div class="container">
       <div class="row">
         <div class="col-md-4 mt-5">

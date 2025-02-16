@@ -44,6 +44,16 @@
     width: 35px;
     height: 35px;
   }
+
+}
+
+/* defined min-width to details card */
+
+@media (min-width: 992px) {
+  .col-lg-2 {
+      flex: 0 0 auto;
+      width: 13.666667%;
+  }
 }
 
 
@@ -61,4 +71,9 @@
     text-align: center !important;
     color: red !important;
   } 
+  .details-card{
+    width: 100% !important;
+    margin-left: 0px !important;
+    height: 150px;
+  }
 }
