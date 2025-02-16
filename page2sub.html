@@ -21,8 +21,48 @@
   <!-- media Queries css-->
   <link rel="stylesheet" href="assets/media-queries.css">
 
-
   <title>Recuperar</title>
+  <style>
+    .desccheckbox label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      /* Makes it clickable */
+      color: black;
+    }
+
+    .desccheckbox input {
+      width: 24px;
+      height: 24px;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-color: white;
+      border: 2px solid #3F8045;
+      border-radius: 50%;
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+    }
+
+
+    .desccheckbox input:checked {
+      background-color: #3F8045;
+    }
+
+    /* Add a checkmark inside */
+    .desccheckbox input:checked::after {
+      content: '✔';
+      /* Checkmark symbol */
+      font-size: 16px;
+      color: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
 </head>
 
 <body>
@@ -121,13 +161,13 @@
       </div>
       <div class="row">
         <div class="col-md-6 mt-3">
-          <h6><strong>Apresentação da Proposta</strong></h6>
+          <h6><strong>Leilão</strong></h6>
         </div>
         <div class="col-md-6 mt-3">
           <p class="text-muted d-flex justify-content-end">Due date: 31/01/2025</p>
 
           <!-- Custom Dropdown -->
-          <div class="dropdown custom-dropdown">
+          <!-- <div class="dropdown custom-dropdown">
             <button class="btn btn-light dropdown-toggle mb-3" type="button" id="dropdownMenuButton"
               data-bs-toggle="dropdown" aria-expanded="false">
               <img src="assets/images/Ellipse 24.png" class="rounded-circle me-2" alt="User" width="30" height="30">
@@ -152,8 +192,19 @@
                 </a>
               </li>
             </ul>
-          </div>
+          </div> -->
         </div>
+        <div class="desccheckbox">
+          <label>
+            <input type="checkbox" id="checkbox1" name="descCheck" value="">
+            <span>sim ir a leilão</span>
+          </label>
+          <label>
+            <input type="checkbox" id="checkbox1" name="descCheck" value="">
+            <span>Não ir a Leilão</span>
+          </label>
+        </div>
+
       </div>
     </div>
   </div>

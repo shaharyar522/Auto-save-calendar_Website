@@ -447,7 +447,7 @@
 .description-labe, label{
   /* padding: 8px; */
  padding: 12px;
- font-weight: bold;
+ /* font-weight: bold; */
  color: white;
 }
 
@@ -630,4 +630,7 @@ input[type="file"] {
 .second-table .table thead tr {
   background-color: #009A9F;
 }
+
+/* page 2 css end */
+
 
