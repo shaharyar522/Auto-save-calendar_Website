@@ -32,10 +32,9 @@ function renderCalendar() {
     calendarDays.appendChild(emptyCell);
   }
 
-  // Generate day cells for each day in the month
   let selectedDays = [4, 5, 8, 9, 11, 12, 16]; // Example: Pre-selecting the first 3 days
 
-  // Array of colors corresponding to each pre-selected day
+
   const colors = ['#025373', '#025373', '#025373', '#F0E130', '#025373', '#4FA0BF', '#F0E130'];
 
   for (let i = 1; i <= lastDate; i++) {
@@ -43,16 +42,15 @@ function renderCalendar() {
     dayCell.classList.add("day");
     dayCell.innerText = i;
 
-    // Highlight today's date
+
     if (i === today.getDate() && currentDate.getMonth() === today.getMonth() && currentDate.getFullYear() === today.getFullYear()) {
       dayCell.classList.add("highlighted");
     }
 
-    // Check if this day is in the selectedDays array (pre-selected days)
+
     if (selectedDays.includes(i)) {
       dayCell.classList.add("highlighted");  // Add general highlight for pre-selected days
 
-      // Assign a unique color for each selected day based on the index in the selectedDays array
       const index = selectedDays.indexOf(i);
       dayCell.style.backgroundColor = colors[index]; // Assign background color dynamically
     }
@@ -78,16 +76,30 @@ document.addEventListener("DOMContentLoaded", function () {
   // Bar Chart
   const ctxBar = document.getElementById('barChart').getContext('2d');
 
+  // Function to return dynamic padding values based on screen size
   function getPadding() {
-    return {
-      left: window.innerWidth < 768 ? 70 : 240,
-      right: window.innerWidth < 768 ? 40 : 10
-    };
+    if (window.innerWidth < 768) {
+      return {
+        left: 50,
+        right: 20
+      };
+    } else if (window.innerWidth >= 768 && window.innerWidth < 1024) {
+      return {
+        left: 100, // Increased padding for tablets or medium screens
+        right: 20
+      };
+    } else {
+      return {
+        left: 90, // Adjust this value for large screens
+        right: 30
+      };
+    }
   }
 
   const taskValues = [10, 5, 18]; // Integer values to show below labels
   const taskLabels = ['Em atraso', 'A terminar', 'Concluído'];
 
+  // Create the bar chart
   const barChart = new Chart(ctxBar, {
     type: 'bar',
     data: {
@@ -103,23 +115,21 @@ document.addEventListener("DOMContentLoaded", function () {
         borderRadius: 5,
       }]
     },
-
     options: {
       responsive: true,
-      maintainAspectRatio: false,
+      maintainAspectRatio: false, // Allow resizing the chart
       plugins: {
         legend: {
           display: false
         },
       },
-
       scales: {
         x: {
           grid: { display: false },
           ticks: {
             padding: 10,
             callback: function (value, index, values) {
-              return [taskValues[index], taskLabels[index]];
+              return [taskValues[index], taskLabels[index]]; // Value on top, label below
             },
             font: {
               size: 14,
@@ -136,12 +146,18 @@ document.addEventListener("DOMContentLoaded", function () {
       layout: {
         padding: getPadding()
       },
-      onResize: function (chart) {
-        chart.options.layout.padding = getPadding();
-        chart.update();
-      }
     }
   });
+
+  // Listen for window resize events to dynamically update chart size
+  window.addEventListener('resize', function () {
+    // Update padding based on screen size
+    barChart.options.layout.padding = getPadding();
+    barChart.update(); // Update the chart with new padding and settings
+  });
+
+
+
 
 
 
