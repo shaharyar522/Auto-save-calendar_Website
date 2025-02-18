@@ -1,11 +1,12 @@
 /* Responsive: Move right-side items inside the navbar menu */
 @media (max-width: 992px) {
   .navbar {
-    height: auto; 
+    height: auto;
   }
 
   .navbar-collapse {
-    background: #92b8d4 !important; ; 
+    background: #92b8d4 !important;
+    ;
     /* color: black; */
     position: absolute;
     top: 100%;
@@ -22,7 +23,7 @@
   }
 
   .nav-item {
-     padding: 8px 0;
+    padding: 8px 0;
   }
 
   /* Move right-side items inside the toggle menu */
@@ -51,8 +52,8 @@
 
 @media (min-width: 992px) {
   .col-lg-2 {
-      flex: 0 0 auto;
-      width: 13.666667%;
+    flex: 0 0 auto;
+    width: 13.666667%;
   }
 }
 
@@ -60,20 +61,50 @@
 /* for medium screen */
 
 @media screen and (max-width:768px) {
-  .calendar-card{
+  .calendar-card {
     right: 30px;
 
   }
-  .chart-container{
+
+  .chart-container {
     margin-bottom: 20px;
   }
-  .chart-container h5{
+
+  .chart-container h5 {
     text-align: center !important;
-    color: red !important;
-  } 
-  .details-card{
+  }
+
+  .details-card {
     width: 100% !important;
     margin-left: 0px !important;
     height: 150px;
+  }
+
+  #doughnutChart {
+    margin-left: 0px !important;
+  }
+
+  .candidate-btn1 {
+    margin-right: 0px !important;
+  }
+
+  .table-date {
+    margin-top: 18px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .chart-container {
+    height: auto !important;
+  }
+
+  .d-flex.align-items-center {
+    flex-direction: column !important;
+    height: auto;
+  }
+
+  .barChart-items {
+    margin-bottom: 15px;
+    /* Space between legend and chart */
   }
 }

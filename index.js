@@ -2,11 +2,12 @@
 // calendar
 
 let currentDate = new Date();
+let selectedDays = [4, 5, 8, 9, 11, 12, 16]; // Example: Pre-selecting the first 3 days
 
 function renderCalendar() {
   const monthYear = document.getElementById("monthYear");
   const calendarDays = document.getElementById("calendarDays");
-  const weekDays = document.querySelectorAll(".weekday"); // Select weekday headers (e.g., Sunday, Monday, etc.)
+  const weekDays = document.querySelectorAll(".weekday");
 
   calendarDays.innerHTML = ""; // Clear previous calendar
 
@@ -20,7 +21,6 @@ function renderCalendar() {
   // Reset weekday highlights
   weekDays.forEach(day => day.classList.remove("highlighted-day"));
 
-  // If today is in the displayed month, highlight its weekday
   if (currentDate.getMonth() === today.getMonth() && currentDate.getFullYear() === today.getFullYear()) {
     weekDays[todayDayIndex].classList.add("highlighted-day");
   }
@@ -33,22 +33,34 @@ function renderCalendar() {
   }
 
   // Generate day cells for each day in the month
+  let selectedDays = [4, 5, 8, 9, 11, 12, 16]; // Example: Pre-selecting the first 3 days
+
+  // Array of colors corresponding to each pre-selected day
+  const colors = ['#025373', '#025373', '#025373', '#F0E130', '#025373', '#4FA0BF', '#F0E130'];
+
   for (let i = 1; i <= lastDate; i++) {
     let dayCell = document.createElement("div");
     dayCell.classList.add("day");
     dayCell.innerText = i;
 
-    // Highlight the current day if it's today's date
-    if (
-      i === today.getDate() &&
-      currentDate.getMonth() === today.getMonth() &&
-      currentDate.getFullYear() === today.getFullYear()
-    ) {
+    // Highlight today's date
+    if (i === today.getDate() && currentDate.getMonth() === today.getMonth() && currentDate.getFullYear() === today.getFullYear()) {
       dayCell.classList.add("highlighted");
+    }
+
+    // Check if this day is in the selectedDays array (pre-selected days)
+    if (selectedDays.includes(i)) {
+      dayCell.classList.add("highlighted");  // Add general highlight for pre-selected days
+
+      // Assign a unique color for each selected day based on the index in the selectedDays array
+      const index = selectedDays.indexOf(i);
+      dayCell.style.backgroundColor = colors[index]; // Assign background color dynamically
     }
 
     calendarDays.appendChild(dayCell);
   }
+
+
 }
 
 function changeMonth(direction) {
@@ -60,26 +72,29 @@ renderCalendar();
 
 
 
-// bar chart
 
+// bar chart
 document.addEventListener("DOMContentLoaded", function () {
   // Bar Chart
   const ctxBar = document.getElementById('barChart').getContext('2d');
 
   function getPadding() {
     return {
-      left: window.innerWidth < 768 ? 10 : 180,  // Adjust left padding based on screen size
-      right: window.innerWidth < 768 ? 10 : 40   // Adjust right padding dynamically
+      left: window.innerWidth < 768 ? 70 : 240,
+      right: window.innerWidth < 768 ? 40 : 10
     };
   }
+
+  const taskValues = [10, 5, 18]; // Integer values to show below labels
+  const taskLabels = ['Em atraso', 'A terminar', 'Concluído'];
 
   const barChart = new Chart(ctxBar, {
     type: 'bar',
     data: {
-      labels: ['Em atraso', 'A terminar', 'Concluído'],
+      labels: taskLabels,
       datasets: [{
         label: 'Tarefas',
-        data: [10, 5, 18],
+        data: taskValues,
         backgroundColor: ['#1CC48F', '#23B5A8', '#254EDB'],
         barThickness: 60,
         maxBarThickness: 80,
@@ -91,27 +106,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     options: {
       responsive: true,
-      maintainAspectRatio: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: {
-          display: true,
-          position: 'left',
-          labels: {
-            usePointStyle: false,
-            boxWidth: 15,
-            boxHeight: 15,
-            padding: 10,
-            font: {
-              size: 10,
-              weight: 'bold'
-            }
-          }
-        }
+          display: false
+        },
       },
+
       scales: {
         x: {
           grid: { display: false },
-          ticks: { padding: 10 },
+          ticks: {
+            padding: 10,
+            callback: function (value, index, values) {
+              return [taskValues[index], taskLabels[index]];
+            },
+            font: {
+              size: 14,
+            }
+          },
           border: { display: false }
         },
         y: {
@@ -121,14 +134,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       },
       layout: {
-        padding: getPadding() // Apply dynamic left & right padding
+        padding: getPadding()
       },
       onResize: function (chart) {
-        chart.options.layout.padding = getPadding(); // Update padding on resize
+        chart.options.layout.padding = getPadding();
         chart.update();
       }
     }
   });
+
 
 
 
@@ -145,15 +159,16 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     options: {
       responsive: true,
-      maintainAspectRatio: true,
+      maintainAspectRatio: true, // You can toggle this to false if you want full control over the height/width
+      aspectRatio: 1.9, // Adjust the aspect ratio as needed (1 for square, adjust values for other ratios)
       plugins: {
         legend: {
-          position: 'bottom', // Move labels to the bottom
-          align: 'center', // Optional: Center align the legend
+          position: 'bottom',
+          align: 'center',
           labels: {
-            usePointStyle: true, // Use squared bullet points instead of circles
-            boxWidth: 10, // Adjust box width for square bullets
-            padding: 10, // Adjust padding between items
+            usePointStyle: true,
+            boxWidth: 10,
+            padding: 10,
           },
         }
       }
@@ -161,8 +176,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
+
 });
 // end
-
-
-// dash board chart
