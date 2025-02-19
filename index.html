@@ -57,13 +57,16 @@
         </ul>
 
         <!-- Right Side Items (Move inside the menu on mobile) -->
-        <div class="d-flex align-items-center  right-items">
-          <i class="fa-regular fa-bell me-2 mt-1" style=" color: white; font-size: 22px;"></i>
+        <div class="d-flex align-items-center right-items position-relative">
+          <div class="position-relative">
+            <i class="fa-regular fa-bell me-2 mt-1 bell-icon" style="color: white; font-size: 22px;"></i>
+            <span class="notification-badge">3</span> <!-- Notification Badge -->
+          </div>
           <img src="./assets/images/Ellipse 6.png" alt="Profile" class="profile-img mx-2">
           <div class="dropdown">
             <button class="btn btn-outline-light lang-toggle" type="button" data-bs-toggle="dropdown">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg" width="20"> PT <i
-                class="fa-solid fa-angle-down"></i>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg" width="20"> PT
+              <i class="fa-solid fa-angle-down"></i>
             </button>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">English</a></li>
@@ -71,6 +74,7 @@
             </ul>
           </div>
         </div>
+
       </div>
     </div>
   </nav>
@@ -81,8 +85,9 @@
   <div class="hero" style="height: 960px ">
     <div class="overlay"></div>
     <div class="container position-relative">
-      <h1 class="fw-bold" style="display: inline-block; position: relative; top: 210px;">ENTIDADE A</h1>
-      <p class="d-block" style="position: relative; top: 210px;">Entidade A.</p>
+      <h1 class="fw-bold" style="display: inline-block; position: relative; top: 210px; font-size: 50px;">ENTIDADE A
+      </h1>
+      <p class="d-block" style="position: relative; top: 210px; font-size: 32px;">Entidade A.</p>
     </div>
 
     <div class="calendar-card">
@@ -136,7 +141,6 @@
                   <li><span class="badge bg-success">&nbsp;</span> Em atraso</li>
                 </ul>
               </div>
-
               <div>
                 <canvas id="barChart" style="width: 100% !important; height: 300px !important;"></canvas>
               </div>
@@ -195,7 +199,7 @@
             <div class="row">
               <div class="table-container needs-table">
                 <div class="d-flex align-items-center mb-3 table-date">
-                  <i class="fa-solid fa-chevron-left me-3 table-icons"></i>
+                  <i class="fa-solid fa-chevron-left me-3" id="table-icons"></i>
                   <span style="color: #3F8045;"><i class="fa-solid fa-calendar-days"></i> &nbsp;Janeiro 2024</span>
                   <i class="fa-solid fa-chevron-right ms-3 table-icons"></i>
                 </div>
@@ -353,11 +357,12 @@
           justify-content: end; 
           color: white; 
           font-weight: bold;
+          font-size: 12px;
           border-radius: 5px;
       ">
           ${data.value} M
       </div>
-      <span class="ms-2" style="color:#03445E">Lorem Ipsum</span>
+      <span class="ms-2" style="color:#03445E"; font-size:16px;>Lorem Ipsum</span>
   `;
       barChartContainer.appendChild(barItem);
     });

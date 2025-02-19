@@ -23,12 +23,46 @@
 
   <title>Recuperar</title>
   <style>
+    .notifications-badge {
+      width: 18px;
+      height: 18px;
+      position: absolute;
+      top: -3px;
+      right: -2px;
+      background-color: black;
+      color: white;
+      font-size: 11px;
+      font-weight: bold;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+    }
+
+    .desc-icons {
+      width: 26px;
+      height: 25px;
+      border: 2px solid #4E4E4E !important;
+      color: #4E4E4E;
+      padding: 6px;
+      transition: borer-color ease-in-out;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .ml-text {
+      margin-left: 4px;
+      display: inline-block;
+    }
+
+    /* stepper */
     .desccheckbox label {
       display: flex;
       align-items: center;
       gap: 10px;
       cursor: pointer;
-      /* Makes it clickable */
       color: black;
     }
 
@@ -39,28 +73,98 @@
       -webkit-appearance: none;
       -moz-appearance: none;
       background-color: white;
-      border: 2px solid #3F8045;
+      border: 2px solid #00B475 !important;
       border-radius: 50%;
       display: inline-block;
       position: relative;
       cursor: pointer;
     }
 
-
     .desccheckbox input:checked {
-      background-color: #3F8045;
+      background: radial-gradient(circle, #00B475 50%, white 30%);
     }
 
-    /* Add a checkmark inside */
     .desccheckbox input:checked::after {
-      content: '✔';
-      /* Checkmark symbol */
+      content: '';
       font-size: 16px;
       color: white;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+    }
+
+    .stepper-item .lines {
+      width: 16px !important;
+      height: 1px;
+      background-color: #00B475;
+      flex-grow: 0.1;
+    }
+
+    .description-sub-button button:focus {
+      box-shadow: none;
+      outline: none;
+    }
+
+    /* step-item */
+    .stepper-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      overflow-x: auto;
+      /* padding: 10px; */
+    }
+
+    .step-item {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .step-item input[type="checkbox"] {
+      width: 28px !important;
+      height: 28px !important;
+      border: 1px solid #00B475;
+      border-radius: 50%;
+      appearance: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      transition: 0.3s;
+    }
+
+    .step-item input[type="checkbox"]:checked {
+      background-color: #00B475;
+      border-color: #00B475;
+    }
+
+    .step-item input[type="checkbox"]::after {
+      content: '\2713' !important;
+      font-size: 14px;
+      color: white !important;
+      font-weight: bold;
+      display: none;
+      position: absolute;
+    }
+
+    .step-item input[type="checkbox"]:checked::after {
+      display: block;
+    }
+
+    .step-item label {
+      margin-left: 5px;
+      font-size: 12px;
+      color: #00B475;
+    }
+
+    .step-item .lines {
+      width: 20px;
+      height: 1px;
+      background-color: #00B475;
+      flex-grow: 1;
     }
   </style>
 </head>
@@ -79,7 +183,7 @@
       <!-- Toggle button for mobile -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon" style="background-color:gray; color: white; padding: 8px;"></span>
       </button>
 
       <!-- Navbar Links + Right Side Items (inside the collapse) -->
@@ -98,10 +202,15 @@
 
         <!-- Right Side Items (Move inside the menu on mobile) -->
         <div class="d-flex align-items-center  right-items">
+          <div class="position-relative">
+            <i class="fa-regular fa-bell me-2 mt-1 bell-icon" style="color: black; font-size: 22px;"></i>
+            <span class="notifications-badge">3</span> <!-- Notification Badge -->
+          </div>
           <i class="fa-regular fa-bell me-2 mt-1" style=" color: white; font-size: 22px;"></i>
           <img src="./assets/images/Ellipse 6.png" alt="Profile" class="profile-img mx-2">
+
           <div class="dropdown">
-            <button class="btn btn-outline-light lang-toggle" type="button" data-bs-toggle="dropdown">
+            <button class="btn btn-primary-light lang-toggle" type="button" data-bs-toggle="dropdown">
               <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg" width="20"> PT <i
                 class="fa-solid fa-angle-down"></i>
             </button>
@@ -119,7 +228,12 @@
     <div class="row">
       <div class="col-12">
         <div class="progress-headings d-flex justify-content-between mt-5">
-          <h5><strong>Nome do objeto / <span class="text-primary">Fluxo de Contratação</span></strong></h5>
+          <h5>
+            <!-- <i class="fa-solid fa-arrow-left fw-bold desc-icons"></i> -->
+            <img src="./assets/images/Icons/arrow-Icon-1.png" alt="">
+            <strong><span class="ml-text">Nome do objeto / <span class="text-primary">Fluxo de
+                  Contratação</span></span></strong>
+          </h5>
           <div class="progress-arrow">
             <i class="fa-solid fa-angles-right"></i>
           </div>
@@ -128,40 +242,63 @@
 
 
       <!-- Progress Tracker -->
-      <div class="d-flex justify-content-center align-items-center my-4 step-container">
-        <div class="step completed">&#x2714;</div>
-        <div class="line"> <span>Passo 1</span></div>
-        <div class="step completed">&#x2714;</div>
-        <div class="line"> <span>Passo 2</span></div>
-        <div class="step" style="border: 2px solid #00B475; color:white; background-color: #00B475;">&#x2714;</div>
-        <div class="line">
-          <span>Passo 3</span>
+      <div class="container p-0 ms-2">
+        <div class="stepper-wrapper">
+          <div class="step-item">
+            <input type="checkbox" id="steps1" checked>
+            <label for="steps1">Passo 1</label>
+            <div class="lines"></div>
+          </div>
+          <div class="step-item">
+            <input type="checkbox" id="steps2" checked>
+            <label for="steps2">Passo 2</label>
+            <div class="lines"></div>
+          </div>
+          <div class="step-item">
+            <input type="checkbox" id="steps3" checked>
+            <label for="steps3">Passo 3</label>
+            <div class="lines"></div>
+          </div>
+          <div class="step-item">
+            <input type="checkbox" id="steps4">
+            <label for="steps4">Passo 4</label>
+            <div class="lines"></div>
+          </div>
+          <div class="step-item">
+            <input type="checkbox" id="steps5">
+            <label for="steps5">Passo 5</label>
+            <div class="lines"></div>
+          </div>
+          <div class="step-item">
+            <input type="checkbox" id="steps6">
+            <label for="steps6">Passo 6</label>
+            <div class="lines"></div>
+          </div>
+          <div class="step-item">
+            <input type="checkbox" id="steps7">
+            <label for="steps7">Passo 7</label>
+            <div class="lines"></div>
+          </div>
+          <div class="step-item">
+            <input type="checkbox" id="steps8">
+            <label for="steps8">Passo 8</label>
+            <div class="lines"></div>
+          </div>
+          <div class="step-item">
+            <input type="checkbox" id="steps9">
+            <label for="steps9">Passo 9</label>
+            <div class="lines"></div>
+          </div>
+          <div class="step-item">
+            <input type="checkbox" id="steps10">
+            <label for="steps10">Passo 10</label>
+          </div>
         </div>
-        <div class="step" style="border: 2px solid #00B475; ;"></div>
-        <div class="line">
-          <span>Passo 4</span>
-        </div>
-        <div class="step" style="border: 2px solid #00B475;"></div>
-        <div class="line">
-          <span>Passo 5</span>
-        </div>
-        <div class="step" style="border: 2px solid #00B475;"></div>
-        <div class="line">
-          <span>Passo 6</span>
-        </div>
-        <div class="step" style="border: 2px solid #00B475;"></div>
-        <div class="line">
-          <span>Passo 7</span>
-        </div>
-        <div class="step" style="border: 2px solid #00B475;"></div>
-        <div class="line">
-          <span>Passo 8</span>
-        </div>
-        <div class="step" style="border: 2px solid #00B475;"></div>
       </div>
+
       <div class="row">
         <div class="col-md-6 mt-3">
-          <h6><strong>Leilão</strong></h6>
+          <h6><strong class="mt-1">Leilão</strong></h6>
         </div>
         <div class="col-md-6 mt-3">
           <p class="text-muted d-flex justify-content-end">Due date: 31/01/2025</p>
@@ -197,11 +334,11 @@
         <div class="desccheckbox">
           <label>
             <input type="radio" id="radio1" name="descCheck" value="sim">
-            <span>Sim ir a leilão</span>
+            <span style="font-size: 11px; font-weight: normal;">Sim ir a leilão</span>
           </label>
           <label>
             <input type="radio" id="radio2" name="descCheck" value="nao">
-            <span>Não ir a leilão</span>
+            <span style="font-size: 11px; font-weight: normal;">Não ir a leilão</span>
           </label>
         </div>
 
@@ -248,10 +385,10 @@
       <div class="row">
         <div class="col-12">
           <div class="description-sub-button d-flex justify-content-between">
-            <button type="button" class="btn btn-outline p-2" style="border: 1px solid #00B475;"> <span class="me-3"><i
-                  class="fa-solid fa-arrow-left desc-icons"></i></span>Anterior</button>
+            <button type="button" class="btn btn-outline p-2" style="border: 1px solid #00B475;color: #00B475"> <span
+                class="me-3"><i class="fa-solid fa-arrow-left desc-icons1"></i></span>Anterior</button>
             <button type="button" class="btn btn-success p-2"> Anterior <span><i
-                  class="fa-solid fa-arrow-right desc-icons2"></i></span></button>
+                  class="fa-solid fa-arrow-right desc-icons2" style="border: 2px solid white;"></i></span></button>
           </div>
         </div>
       </div>
@@ -265,7 +402,7 @@
       </div>
 
       <!-- card row -->
-      <div class="row g-5">
+      <div class="row g-5  mb-4" style="margin-top: -14px;">
         <div class="col-sm-12 col-md-4 col-lg-2">
           <div class="card details-card p-2">
             <div class="card-img d-flex justify-content-center py-3">
@@ -329,7 +466,7 @@
         <div class="col-sm-12 col-md-4 col-lg-2">
           <div class="card details-card p-2">
             <div class="card-img d-flex justify-content-center py-3">
-              <img src="./assets/images/Icons/paste.png" alt="">
+              <img src="./assets/images/Icons/paste2.png" alt="">
             </div>
             <div class="card-title">
               <p class="text-center">Manifestação da Necessidade</p>
@@ -337,91 +474,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- table data section -->
-  <section class="data-table">
-    <div class="container">
-      <div class="col-12"> <!-- Added column wrapper for better responsiveness -->
-        <!-- table -->
-        <div class="row">
-          <div class="table-container">
-            <table class="table table-hover text-center table-responsive">
-              <thead class="table-head">
-                <tr>
-                  <th>Editar</th>
-                  <th>Nome da imagem</th>
-                  <th>Observações</th>
-                  <th>Tipo documento</th>
-                  <th>Download</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><i class="fa-solid fa-pen"></i></td>
-                  <td>Lorem Ipsum</td>
-                  <td>Lorem Ipsum</td>
-                  <td>Lorem Ipsum</td>
-                  <td><i class="fa-solid fa-download"></i></td>
-                </tr>
-                <tr>
-                  <td><i class="fa-solid fa-pen"></i></td>
-                  <td>Lorem Ipsum</td>
-                  <td>Lorem Ipsum</td>
-                  <td>Lorem Ipsum</td>
-                  <td><i class="fa-solid fa-download"></i></td>
-                </tr>
-                <tr>
-                  <td><i class="fa-solid fa-pen"></i></td>
-                  <td>Lorem Ipsum</td>
-                  <td>Lorem Ipsum</td>
-                  <td>Lorem Ipsum</td>
-                  <td><i class="fa-solid fa-download"></i></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div> <!-- End of .col-12 -->
-    </div>
-  </section>
-
-  <!-- second table section -->
-  <section class="second-table">
-    <div class="container">
-      <div class="col-12"> <!-- Added column wrapper for better responsiveness -->
-        <!-- table -->
-        <div class="row">
-          <div class="table-container">
-            <table class="table table-hover text-center table-responsive">
-              <thead class="table-head">
-                <tr>
-                  <th style="width: 120px;">Estado</th>
-                  <th>Nº Documento Financeiro</th>
-                  <th>Valor do Documento Financeiro</th>
-                  <th>Data de Entrada</th>
-                  <th>Data de Início</th>
-                  <th>Nº Compromisso</th>
-                  <th>Valor</th>
-
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>lorem ipsum</td>
-                  <td>Lorem Ipsum</td>
-                  <td>Lorem Ipsum</td>
-                  <td>Lorem Ipsum</td>
-                  <td>Lorem Ipsum</td>
-                  <td>Lorem Ipsum</td>
-                  <td>Lorem Ipsum</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div> <!-- End of .col-12 -->
     </div>
   </section>
   <!-- footer section -->

@@ -13,7 +13,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- custom css -->
-  <link rel="stylesheet" href="assets/style.css">
+  <!-- <link rel="stylesheet" href="assets/style.css"> -->
 
   <!-- fontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
@@ -26,6 +26,69 @@
 </head>
 
 <style>
+  /* navbar */
+  .navbar {
+    height: 80px;
+    width: 100%;
+    background-color: #FFFFFF;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .navbar-nav {
+    display: flex;
+    gap: 25px;
+  }
+
+  .navbar a {
+    color: black !important;
+  }
+
+  .navbar-brand img {
+    width: 63px;
+    height: 63px;
+
+  }
+
+  .navbar-toggler {
+    border: none;
+  }
+
+  .navbar-toggler:focus {
+    box-shadow: none;
+  }
+
+  .profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  .lang-toggle:hover {
+    background-color: transparent;
+  }
+
+  .lang-toggle:focus {
+    outline: none;
+    box-shadow: none;
+
+  }
+
+  .lang-toggle {
+    border-radius: 40px;
+    width: 130px;
+    height: 44px;
+    padding: 5px;
+    border: 1px solid black;
+  }
+
+  .dropdown-menu {
+    background-color: #92b8d4;
+  }
+
+  .dropdown-item:hover {
+    background-color: #1a90e4;
+  }
+
   .desc-icons-object {
     border: 1px solid #3F8045;
     color: #00B475;
@@ -93,17 +156,20 @@
   }
 
   .stepper-item label {
-    margin-left: 4px;
+    margin-left: 10px;
     font-size: 12px;
     color: #00B475;
+    font-weight: bold;
   }
 
   .stepper-item .line {
     width: 20px;
+    margin-left: 13px;
     max-width: 70px;
     height: 2px;
     background-color: #00B475;
-    flex-grow: 0.7;
+    flex-grow: 1;
+
   }
 
   /* sub-progress */
@@ -129,6 +195,7 @@
     height: 2px;
     background-color: #00B475;
     flex-grow: 1;
+    margin-left: 6px;
   }
 
   .sub-progress-stepper .stepper-item label {
@@ -171,6 +238,30 @@
     background-color: #009A9F;
     color: white;
   }
+
+  .juri-table thead tr:first-child th:first-child {
+    border-top-left-radius: 8px !important;
+    border-bottom-left-radius: 8px !important;
+  }
+
+  .juri-table thead tr:first-child th:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  .juri-table tbody tr td:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    background-color: red;
+  }
+
+  .juri-table tbody tr td:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background-color: #1a90e4;
+  }
+
+
 
   .juri-table th {
     padding: 12px;
@@ -243,13 +334,58 @@
   .slider.round:before {
     border-radius: 50%;
   }
+
+  .notifi-badge {
+    width: 18px;
+    /* Slightly larger for better centering */
+    height: 18px;
+    position: absolute;
+    top: -3px;
+    right: -2px;
+    background-color: #00B475;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lang-toggle:focus {
+    box-shadow: none;
+    outline: none;
+  }
+
+  .description-lab {
+    width: 100%;
+    height: 54px;
+    background-color: #00B475;
+    height: 50px;
+    border-radius: 8px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    color: white;
+    font-weight: bold;
+
+  }
+
+  .custom-dropdown2 button {
+    border: 1px solid #3F8045;
+  }
+
+  .custom-dropdown2 .dropdown-toggle::after {
+    display: none !important;
+  }
 </style>
 
 <body>
 
 
   <!-- navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
+  <nav class="navbar navbar-expand-lg ">
     <div class="container">
       <!-- Logo -->
       <a class="navbar-brand" href="#">
@@ -279,9 +415,14 @@
         <!-- Right Side Items (Move inside the menu on mobile) -->
         <div class="d-flex align-items-center  right-items">
           <i class="fa-regular fa-bell me-2 mt-1" style=" color: white; font-size: 22px;"></i>
+          <div class="position-relative">
+            <i class="fa-regular fa-bell me-2 mt-1 bell-icon" style="color: #00B475; font-size: 22px;"></i>
+            <span class="notifi-badge">3</span> <!-- Notification Badge -->
+          </div>
           <img src="./assets/images/Ellipse 6.png" alt="Profile" class="profile-img mx-2">
+
           <div class="dropdown">
-            <button class="btn btn-outline-light lang-toggle" type="button" data-bs-toggle="dropdown">
+            <button class="btn btn-primary-light lang-toggle" type="button" data-bs-toggle="dropdown">
               <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg" width="20"> PT <i
                 class="fa-solid fa-angle-down"></i>
             </button>
@@ -298,21 +439,24 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-sm-12">
-        <div class="progress-Data mt-5">
-          <h5> <i class="fa-solid fa-arrow-left desc-icons-object mt-2"></i><b style="color: #4E4E4E;" class="mt-2">Nome
-              do
-              objeto /
-              <span>Fluxo de
-                Contratação</span></b></h5>
+        <div class="progress-headings d-flex justify-content-between mt-5">
+          <h5>
+            <img src="./assets/images/Icons/Icon-3.png" alt="">
+            <strong><span class="ml-text">Nome do objeto / <span class="text-primary">Fluxo de
+                  Contratação</span></span></strong>
+          </h5>
+
         </div>
       </div>
       <div class="col-md-6 col-sm-12">
-        <div class="userNeed-data d-flex justify-content-around align-items-center mt-5">
-          <div class="user-id">
-            <span>ID da necessidade: 123456</span>
+        <div class="userNeed-data d-flex justify-content-end align-items-center" style="margin-top: 34px;">
+          <div class="user-id ">
+            <span class="me-lg-5">ID da necessidade: 123456</span>
           </div>
-          <div class="progress-arrow">
-            <i class="fa-solid fa-angles-right"></i>
+          <div class="progress-arrow d-flex justify-content-between">
+            <!-- <i class="fa-solid fa-angles-right ms-lg-5"></i> -->
+            <img src="./assets/images/Icons/Group-arrow.png" alt="" class="img-fluid"
+              style="width: 48px; height: 48px;">
           </div>
         </div>
       </div>
@@ -352,7 +496,7 @@
   <!-- sub progress tracker -->
   <section class="sub-progress-stepper">
     <div class="container">
-      <div class="stepper-wrapper">
+      <div class="stepper-wrapper mt-3">
         <div class="stepper-item">
           <input type="checkbox" id="step5" checked>
           <label for="step5">Identificação da Entidade</label>
@@ -384,7 +528,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <div class="description-label">
+        <div class="description-lab  mt-3">
           <label for="description">Condições de Faturação</label>
         </div>
       </div>
@@ -424,6 +568,16 @@
     </div>
   </div>
 
+  <!-- <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="description-lab  mt-3">
+          <label for="description">Condições de Faturação</label>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
 
 
 
@@ -432,7 +586,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <div class="description-label mt-2">
+        <div class="description-lab mt-2">
           <label for="description">Júri do Procedimento</label>
         </div>
       </div>
@@ -501,20 +655,21 @@
       </div>
 
 
-      <div class="col-12">
-        <div class="fileUpload-input mt-4 mb-3">
-          <div class="input-border">
-            <input type="file" id="file-input" class="form-control">
-          </div>
-          <label for="file-input" class="upload-label">
-            <i class="fas fa-upload"></i> <!-- FontAwesome Upload Icon -->
-          </label>
-          <span class="fw-bold" style="position: absolute; top: 78%; left: 32%; color: #3F8045; margin-top: -10px;">
-            Clicar para fazer upload <span class="text-muted">ou arrastar e soltar</span>
-          </span>
-        </div>
-      </div>
+
     </div>
+    <!-- <div class="col-12">
+      <div class="fileUpload-input mt-4 mb-3">
+        <div class="input-border">
+          <input type="file" id="file-input" class="form-control">
+        </div>
+        <label for="file-input" class="upload-label">
+          <i class="fas fa-upload"></i>
+        </label>
+        <span class="fw-bold" style="position: absolute; top: 78%; left: 32%; color: #3F8045; margin-top: -10px;">
+          Clicar para fazer upload <span class="text-muted">ou arrastar e soltar</span>
+        </span>
+      </div>
+    </div> -->
     <!-- buttons row -->
     <div class="row">
       <div class="col-12">

@@ -93,6 +93,25 @@
 
 }
 
+.notification-badge {
+  width: 18px;
+  /* Slightly larger for better centering */
+  height: 18px;
+  position: absolute;
+  top: -3px;
+  right: -2px;
+  background-color: white;
+  color: #00B475;
+  font-size: 11px;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
 .dropdown-menu {
   background-color: #92b8d4;
 }
@@ -193,13 +212,7 @@
   border-radius: 5px;
 }
 
-.custom-highlighted {
-  background-color: #FF6347;
-  /* Tomato color or any color of your choice */
-  color: white;
-  border-radius: 50%;
-  text-align: center;
-}
+
 
 .event-box {
   margin-top: 10px;
@@ -237,7 +250,7 @@
 
 /* dashboard chart */
 .barchartSection {
-  background: linear-gradient(to bottom left, rgba(255, 171, 19, 0.5) 0%, rgba(0, 181, 178, 0.6) 51%, rgba(0, 180, 117, 0.6) 100%);
+  background: linear-gradient(to bottom left, rgba(255, 171, 19, 0.1) 0%, rgba(0, 181, 178, 0.2) 51%, rgba(0, 180, 117, 0.3) 100%);
 }
 
 .dashboard-container {
@@ -262,6 +275,12 @@
   justify-content: flex-end;
   padding-right: 10px;
   font-weight: bold;
+}
+
+.barChart-items li {
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
 }
 
 
@@ -325,10 +344,27 @@
   border: 1px solid black;
 }
 
-.table-icons {
-  border: 3px solid #3F8045 !important;
+#table-icons {
   padding: 6px;
-  transition: borer-color ease-in-out;
+  border-radius: 50%;
+  font-size: 14px !important;
+  font-weight: bold !important;
+  color: rgba(63, 128, 69, 1) !important;
+  /* Make color visible */
+  border: 1px solid rgba(63, 128, 69, 1) !important;
+  /* Make border visible */
+}
+
+#table-icons {
+  opacity: 0.5;
+  /* Makes the entire element semi-transparent */
+}
+
+
+.table-icons {
+  border: 1px solid #3F8045 !important;
+  padding: 6px;
+  /* transition: borer-color ease-in-out; */
   border-radius: 50%;
   font-size: 14px !important;
   font-weight: bold !important;

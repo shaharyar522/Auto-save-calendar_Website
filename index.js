@@ -45,6 +45,7 @@ function renderCalendar() {
 
     if (i === today.getDate() && currentDate.getMonth() === today.getMonth() && currentDate.getFullYear() === today.getFullYear()) {
       dayCell.classList.add("highlighted");
+      dayCell.style.borderRadius = "8px";
     }
 
 
@@ -53,6 +54,7 @@ function renderCalendar() {
 
       const index = selectedDays.indexOf(i);
       dayCell.style.backgroundColor = colors[index]; // Assign background color dynamically
+      dayCell.style.borderRadius = "8px";
     }
 
     calendarDays.appendChild(dayCell);
@@ -85,13 +87,13 @@ document.addEventListener("DOMContentLoaded", function () {
       };
     } else if (window.innerWidth >= 768 && window.innerWidth < 1024) {
       return {
-        left: 100, // Increased padding for tablets or medium screens
+        left: 100, // for tablets screen
         right: 20
       };
     } else {
       return {
-        left: 90, // Adjust this value for large screens
-        right: 30
+        left: 70, // for desktop screen
+        right: 20
       };
     }
   }
@@ -169,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
     data: {
       labels: ['Open', 'Reopen', 'Hold', 'Monitor', 'Adressed', 'Closed'],
       datasets: [{
-        data: [40, 10, 10, 15, 10, 15],
+        data: [93, 10, 5, 10, 10, 10],
         backgroundColor: ['#254EDB', '#23B5A8', '#1CC48F', '#F7C948', '#E67E22', '#2C3E50']
       }]
     },

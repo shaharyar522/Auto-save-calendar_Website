@@ -42,7 +42,7 @@
       <!-- Toggle button for mobile -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon" style="background-color:gray; color: white; padding: 8px;"></span>
       </button>
 
       <!-- Navbar Links + Right Side Items (inside the collapse) -->
@@ -61,10 +61,10 @@
 
         <!-- Right Side Items (Move inside the menu on mobile) -->
         <div class="d-flex align-items-center  right-items">
-          <i class="fa-regular fa-bell me-2 mt-1" style=" color: white; font-size: 22px;"></i>
+          <i class="fa-regular fa-bell me-2 mt-1" style=" color: black; font-size: 22px;"></i>
           <img src="./assets/images/Ellipse 6.png" alt="Profile" class="profile-img mx-2">
           <div class="dropdown">
-            <button class="btn btn-outline-light lang-toggle" type="button" data-bs-toggle="dropdown">
+            <button class="btn btn-primary-light lang-toggle" type="button" data-bs-toggle="dropdown">
               <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg" width="20"> PT <i
                 class="fa-solid fa-angle-down"></i>
             </button>
@@ -81,8 +81,13 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <div class="progress-headings d-flex justify-content-between mt-5">
-          <h5><strong>Nome do objeto / <span class="text-primary">Fluxo de Contratação</span></strong></h5>
+        <div class=" d-flex justify-content-between mt-5">
+          <h5>
+            <!-- <i class="fa-solid fa-arrow-left desc-icons-object"></i> -->
+            <img src="./assets/images/Icons/arrow-Icon-1.png" alt="">
+            <strong><span class="ml-text">Nome do objeto / <span class="text-primary">Fluxo de
+                  Contratação</span></span></strong>
+          </h5>
           <div class="progress-arrow">
             <i class="fa-solid fa-angles-right"></i>
           </div>
@@ -90,38 +95,54 @@
       </div>
 
 
+
       <!-- Progress Tracker -->
-      <div class="d-flex justify-content-center align-items-center my-4 step-container">
-        <div class="step completed">&#x2714;</div>
-        <div class="line"> <span>Passo 1</span></div>
-        <div class="step completed">&#x2714;</div>
-        <div class="line"> <span>Passo 2</span></div>
-        <div class="step" style="border: 2px solid #00B475;color: #00B475;">&#x2714;</div>
-        <div class="line">
-          <span>Passo 3</span>
+      <section class="prog-tracker py-3">
+        <div class="container p-0">
+          <div class="stepper-wrapper">
+            <div class="stepper-item">
+              <input type="checkbox" id="steps1" checked>
+              <label for="steps1">Passo 1</label>
+              <div class="line"></div>
+            </div>
+            <div class="stepper-item">
+              <input type="checkbox" id="steps2" checked>
+              <label for="steps2">Passo 2</label>
+              <div class="line"></div>
+            </div>
+            <div class="stepper-item">
+              <input type="checkbox" id="steps3">
+              <label for="steps3">Passo 3</label>
+              <div class="line"></div>
+            </div>
+            <div class="stepper-item">
+              <input type="checkbox" id="steps4">
+              <label for="steps4">Passo 4</label>
+              <div class="line"></div>
+            </div>
+            <div class="stepper-item">
+              <input type="checkbox" id="steps5">
+              <label for="steps5">Passo 5</label>
+              <div class="line"></div>
+            </div>
+            <div class="stepper-item">
+              <input type="checkbox" id="steps6">
+              <label for="steps6">Passo 6</label>
+              <div class="line"></div>
+            </div>
+            <div class="stepper-item">
+              <input type="checkbox" id="steps7">
+              <label for="steps7">Passo 7</label>
+              <div class="line"></div>
+            </div>
+            <div class="stepper-item">
+              <input type="checkbox" id="steps8">
+              <label for="steps8">Passo 8</label>
+            </div>
+          </div>
         </div>
-        <div class="step" style="border: 2px solid #00B475;"></div>
-        <div class="line">
-          <span>Passo 4</span>
-        </div>
-        <div class="step" style="border: 2px solid #00B475;"></div>
-        <div class="line">
-          <span>Passo 5</span>
-        </div>
-        <div class="step" style="border: 2px solid #00B475;"></div>
-        <div class="line">
-          <span>Passo 6</span>
-        </div>
-        <div class="step" style="border: 2px solid #00B475;"></div>
-        <div class="line">
-          <span>Passo 7</span>
-        </div>
-        <div class="step" style="border: 2px solid #00B475;"></div>
-        <div class="line">
-          <span>Passo 8</span>
-        </div>
-        <div class="step" style="border: 2px solid #00B475;"></div>
-      </div>
+      </section>
+
       <div class="row">
         <div class="col-md-6 mt-3">
           <h6><strong>Apresentação da Proposta</strong></h6>
@@ -156,6 +177,7 @@
               </li>
             </ul>
           </div>
+
         </div>
       </div>
     </div>
@@ -187,9 +209,11 @@
               <input type="file" id="file-input" class="form-control">
             </div>
             <label for="file-input" class="upload-label">
-              <i class="fas fa-upload"></i> <!-- FontAwesome Upload Icon -->
+              <!-- <i class="fas fa-upload"></i> -->
+              <img src="./assets/images/Icons/Icon.png" alt="">
             </label>
-            <span class="fw-bold" style="position: absolute; top: 78%; left: 32%; color: #3F8045; margin-top: -10px;">
+            <span class="fw-bold"
+              style="position: absolute; top: 78%; left: 37%; color: #3F8045; margin-top: -10px; font-size: 14px;">
               Clicar para fazer upload <span class="text-muted">ou arrastar e soltar</span>
             </span>
           </div>
@@ -198,7 +222,7 @@
       <!-- buttons row -->
       <div class="row">
         <div class="col-12">
-          <div class="description-sub-button d-flex justify-content-between">
+          <div class="description-sub-button d-flex justify-content-between mt-3">
             <button type="button" class="btn btn-outline p-2" style="border: 1px solid #00B475;"> <span class="me-3"><i
                   class="fa-solid fa-arrow-left desc-icons"></i></span>Anterior</button>
             <button type="button" class="btn btn-success p-2"> Anterior <span><i
@@ -216,7 +240,7 @@
       </div>
 
       <!-- card row -->
-      <div class="row g-5">
+      <div class="row g-5 " style="margin-top: -14px;">
         <div class="col-sm-12 col-md-4 col-lg-2">
           <div class="card details-card p-2">
             <div class="card-img d-flex justify-content-center py-3">
@@ -278,12 +302,12 @@
           </div>
         </div>
         <div class="col-sm-12 col-md-4 col-lg-2">
-          <div class="card details-card p-2">
+          <div class="card details-card p-2" style="background-color: #00B475;">
             <div class="card-img d-flex justify-content-center py-3">
               <img src="./assets/images/Icons/paste.png" alt="">
             </div>
             <div class="card-title">
-              <p class="text-center">Manifestação da Necessidade</p>
+              <p class="text-center" style="color: white;">Manifestação da Necessidade</p>
             </div>
           </div>
         </div>
@@ -293,7 +317,7 @@
 
   <!-- table data section -->
   <section class="data-table">
-    <div class="container">
+    <div class="container mt-4">
       <div class="col-12"> <!-- Added column wrapper for better responsiveness -->
         <!-- table -->
         <div class="row">
@@ -340,12 +364,12 @@
 
   <!-- second table section -->
   <section class="second-table">
-    <div class="container">
+    <div class="container mt-2">
       <div class="col-12"> <!-- Added column wrapper for better responsiveness -->
         <!-- table -->
         <div class="row">
           <div class="table-container">
-            <table class="table table-hover text-center table-responsive">
+            <table class="table table-hover text-center table-responsive second-table">
               <thead class="table-head">
                 <tr>
                   <th style="width: 120px;">Estado</th>
