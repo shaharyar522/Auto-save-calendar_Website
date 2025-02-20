@@ -65,6 +65,23 @@
   border: 1px solid black;
 }
 
+.notifications-badge {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: -3px;
+  right: -2px;
+  background-color: black;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
 /* toggle */
 .navbar-toggler-icon {
   background-image: none !important;

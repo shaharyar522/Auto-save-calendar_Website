@@ -68,6 +68,16 @@
     text-align: center !important;
   }
 
+  .table-para {
+    font-size: 11px !important;
+    white-space: nowrap;
+  }
+
+  .table-date {
+    margin-top: 20px;
+    margin-left: 30px;
+  }
+
   .calendar-card {
     right: 30px;
 
@@ -212,5 +222,21 @@
     display: flex;
     justify-content: center;
     gap: 30px !important;
+  }
+
+  /* sidebar */
+  #sidebar {
+    background-color: red !important;
+  }
+
+  .activity-card {
+    /* padding: 0px; */
+    margin-left: 50px !important;
+  }
+
+  #custom-card {
+    width: 100% !important;
+    margin-left: 0px !important;
+    height: 150px;
   }
 }

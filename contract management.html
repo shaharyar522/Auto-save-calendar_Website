@@ -207,13 +207,13 @@
   }
 
   /* juri table */
-  .juri-table {
+  .docs-table {
     border-radius: 8px;
     overflow: hidden;
 
   }
 
-  thead th {
+  .docs-table thead th {
     text-align: center;
     vertical-align: middle;
     height: 53px;
@@ -221,13 +221,13 @@
   }
 
 
-  .juri-table thead {
+  .docs-table thead {
     background-color: #009A9F;
     color: white;
     font-size: 14px;
   }
 
-  .juri-table thead tr:first-child th:first-child {
+  .docs-table thead tr:first-child th:first-child {
     border-top-left-radius: 8px !important;
     border-bottom-left-radius: 8px !important;
   }
@@ -300,11 +300,19 @@
   .quick-links a {
     text-decoration: none !important;
   }
+
+  .card-header {
+    background: white;
+    border-radius: 14px !important;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 5);
+    /* Soft shadow */
+    padding: 15px;
+    transition: box-shadow 0.3s ease-in-out;
+    /* Smooth transition */
+  }
 </style>
 
-<body>
-
-
+<body class="bg-light">
   <!-- navbar -->
   <nav class="navbar navbar-expand-lg ">
     <div class="container">
@@ -327,7 +335,7 @@
             <a class="nav-link active" aria-current="page" href="#">Necessidade</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Gestão de Contrato</a>
+            <a class="nav-link" href="index.html">Gestão de Contrato</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Orçamento</a>
@@ -356,105 +364,89 @@
       </div>
     </div>
   </nav>
-
-  <section class="need-section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6" style="margin-top: 30px;">
-          <h5>Necessidade</h5>
-        </div>
-
-
-        <div class="col-md-6" style="margin-top: 30px;">
-          <div class="buttons-container d-flex justify-content-end gap-3">
-            <button type="button" class="btn btn-outline-primary needBtn1">Criar Necessidade</button>
-            <button type="button" class="btn btn-primary needBtn2">
-              <img src="./assets/images/Icons/svgexport-3 2.png" alt="">
-              search Id Task</button>
-          </div>
+  <div class="container mt-4">
+    <div class="card" style="border: none;">
+      <div class="card-header d-flex align-items-center">
+        <button class="btn btn-link text-dark" data-bs-toggle="collapse" data-bs-target="#financeDocs">
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="ms-2" style="border-radius: 16px;">
+          <img src="./assets/images/Icons/Icon-move.png" alt="">
+          <strong class="ms-1 mt-1">Gestão de Contrato</strong> <br>
+          <a href="#" class="text-primary text-decoration-none "
+            style="color: #4E4E4E !important; margin-left: 36px;">Documentos
+            Financeiros</a>
         </div>
       </div>
-    </div>
-  </section>
 
-
-  <!-- table 2 -->
-  <div class="container">
-    <div class="table-responsive mt-2 py-2">
-      <table class="table table-hover juri-table text-center">
-        <thead style="height: 53px; ">
-          <tr>
-            <th style="white-space: nowrap;">Nº Processo</th>
-            <th>Objeto</th>
-            <th style="white-space: nowrap;">Entidade Requerente</th>
-            <th>Requerente</th>
-            <th>Procedimento Aquisitivo</th>
-            <th>Assignado a</th>
-            <th>Fase</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Presidente</td>
-            <td>Lorem ipsum</td>
-            <td>Lorem ipsum</td>
-            <td>Lorem ipsum</td>
-            <td>Lorem ipsum</td>
-            <td>Lorem ipsum</td>
-            <td>Lorem ipsum</td>
-            <td><img src="./assets/images/Icons/Group 1399503.png" alt="" style="margin-right: 15px;">
-              <img src="./assets/images/Icons/eye.png" alt="">
-              <img src="./assets/images/Icons/pencil.png" alt="">
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div id="financeDocs" class="collapse show mt-2">
+        <table class="docs-table table table-borderless table-responsive">
+          <thead>
+            <tr>
+              <th>Ver</th>
+              <th>Data</th>
+              <th>Objeto</th>
+              <th>Entidade</th>
+              <th>Requerente</th>
+              <th>Concluído</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="6" class="empty-message">Sem necessidades para este mês</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 
-  <!-- footer section -->
 
-  <footer style="background-color: #172629;  margin-top: auto;">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 mt-5">
-          <h3 class="fw-bold" style="color: white; border-bottom: 1px solid white; display: inline-block;">
-            contacte-nos
-          </h3>
+
+<!-- footer section -->
+
+<footer style="background-color: #172629;  margin-top: auto;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mt-5">
+        <h3 class="fw-bold" style="color: white; border-bottom: 1px solid white; display: inline-block;">
+          contacte-nos
+        </h3>
+      </div>
+
+      <div class="col-md-8 mt-5">
+        <div class="quick-links">
+          <a href=""> <span>TERMOS E CONDIÇÕES</span></a>
+          <a href=""> <span>POLÍTICA DE PRIVACIDADE</span></a>
+          <a href=""> <span>POLÍTICA DE COOKIES</span></a>
         </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-12">
+          <div class="media-icons"></div>
+          <div class="social-links">
+            <a href=""> <i class="fa-brands fa-youtube"></i></a>
+            <a href=""><i class="fa-brands fa-facebook"></i></a>
+            <a href=""> <i class="fa-brands fa-linkedin"></i></a>
+            <a href=""> <i class="fa-brands fa-twitter"></i></a>
+            <a href=""> <i class="fa-brands fa-instagram"></i></a>
 
-        <div class="col-md-8 mt-5">
-          <div class="quick-links">
-            <a href=""> <span>TERMOS E CONDIÇÕES</span></a>
-            <a href=""> <span>POLÍTICA DE PRIVACIDADE</span></a>
-            <a href=""> <span>POLÍTICA DE COOKIES</span></a>
-          </div>
-        </div>
-        <div class="row mt-5">
-          <div class="col-12">
-            <div class="media-icons"></div>
-            <div class="social-links">
-              <a href=""> <i class="fa-brands fa-youtube"></i></a>
-              <a href=""><i class="fa-brands fa-facebook"></i></a>
-              <a href=""> <i class="fa-brands fa-linkedin"></i></a>
-              <a href=""> <i class="fa-brands fa-twitter"></i></a>
-              <a href=""> <i class="fa-brands fa-instagram"></i></a>
-
-            </div>
           </div>
         </div>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>
 
 
-  <!-- Option 1: Bootstrap Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- custom js -->
-  <script src="index.js"></script>
+<!-- custom js -->
+<script src="index.js"></script>
 
 </body>
 

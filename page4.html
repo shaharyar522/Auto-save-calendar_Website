@@ -1,0 +1,970 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5, minimum-scale=1">
+
+
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- custom css -->
+  <!-- <link rel="stylesheet" href="assets/style.css"> -->
+
+  <!-- fontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+  <!-- media Queries css-->
+  <link rel="stylesheet" href="assets/media-queries.css">
+
+
+  <title>Recuperar</title>
+</head>
+
+<style>
+  /* google webFonts */
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+
+  /* globally target */
+  * {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: "Open Sans", serif;
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* navbar */
+  .navbar {
+    height: 80px;
+    width: 100%;
+    background-color: #FFFFFF;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+
+  .navbar-nav {
+    display: flex;
+    gap: 25px;
+  }
+
+  .navbar a {
+    color: black !important;
+  }
+
+  .navbar-brand img {
+    width: 63px;
+    height: 63px;
+
+  }
+
+  .navbar-toggler {
+    border: none;
+  }
+
+  .navbar-toggler:focus {
+    box-shadow: none;
+  }
+
+  .profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  .lang-toggle:hover {
+    background-color: transparent;
+  }
+
+  .lang-toggle:focus {
+    outline: none;
+    box-shadow: none;
+
+  }
+
+  .lang-toggle {
+    border-radius: 40px;
+    width: 130px;
+    height: 44px;
+    padding: 5px;
+    border: 1px solid black;
+  }
+
+  .navbar-toggler-icon {
+    background-image: none !important;
+    width: 30px;
+    height: 30px;
+    background-color: gray;
+    border-radius: 4px;
+    position: relative;
+  }
+
+  /* Create the three lines for the menu (hamburger) */
+  .navbar-toggler-icon::before,
+  .navbar-toggler-icon::after,
+  .navbar-toggler-icon span {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 20px;
+    height: 2px;
+    background-color: white;
+    /* Change icon color */
+    transform: translateX(-50%);
+  }
+
+  .navbar-toggler-icon::before {
+    top: 8px;
+  }
+
+  .navbar-toggler-icon::after {
+    bottom: 8px;
+  }
+
+  .navbar-toggler-icon span {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+
+  .dropdown-menu {
+    background-color: #92b8d4;
+  }
+
+  .notifi-badge {
+    width: 18px;
+    /* Slightly larger for better centering */
+    height: 18px;
+    position: absolute;
+    top: -3px;
+    right: -2px;
+    background-color: #00B475;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* stepper */
+  .stepper-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 10px;
+  }
+
+  .stepper-item {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .stepper-item input[type="checkbox"] {
+    width: 28px !important;
+    height: 28px !important;
+    border: 2px solid #00B475;
+    border-radius: 50%;
+    appearance: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: 0.3s;
+  }
+
+  .stepper-item input[type="checkbox"]:checked {
+    background-color: #00B475;
+    border-color: #00B475;
+  }
+
+  .stepper-item input[type="checkbox"]::after {
+    content: '\2713' !important;
+    /* Unicode checkmark */
+    font-size: 14px;
+    color: white !important;
+    font-weight: bold;
+    display: none;
+    position: absolute;
+  }
+
+  .stepper-item input[type="checkbox"]:checked::after {
+    display: block;
+  }
+
+  .stepper-item label {
+    margin-left: 8px;
+    font-size: 12px;
+    color: #00B475;
+    font-weight: bold;
+  }
+
+  .stepper-item .line {
+    width: 20px;
+    margin-left: 13px;
+    max-width: 70px;
+    height: 2px;
+    background-color: #00B475;
+    flex-grow: 1;
+
+  }
+
+  /* labels / input css */
+  .direct-lab {
+    width: 100%;
+    height: 54px;
+    background-color: #00B475;
+    height: 50px;
+    border-radius: 8px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    color: white;
+    font-weight: 500;
+
+  }
+
+  /* direct input */
+  .direct-input input {
+    height: 62px;
+  }
+
+  .direct-input input:focus {
+    box-shadow: none;
+    outline: none;
+  }
+
+  /* upload data  input */
+  .fileUpload-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    position: relative;
+    width: 100%;
+  }
+
+  .input-border {
+    border: 2px dotted gray;
+    width: 100%;
+    height: 104px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+  }
+
+  input[type="file"] {
+    display: none;
+
+  }
+
+  .upload-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: background 0.3s ease;
+  }
+
+  .upload-label img {
+    width: 22px;
+    height: 18px;
+  }
+
+  .input-heading small {
+    position: absolute;
+    top: -7px;
+    /* left: 15px; */
+    background: white;
+    padding: 0 5px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .input-border {
+    position: relative;
+  }
+
+
+
+
+
+
+
+  /* footer css */
+  .social-links {
+    display: flex;
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+
+  .social-links a {
+    text-decoration: none !important;
+  }
+
+  .social-links i {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: white;
+    color: black !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 3px 0;
+    transition: background-color 0.5s ease-in-out;
+  }
+
+  .social-links i:hover {
+    background-color: lightgrey !important;
+  }
+
+  .quick-links span {
+    display: block;
+    padding: 3px;
+    color: #FFFFFF;
+    font-size: 13px;
+  }
+
+  .quick-links a {
+    text-decoration: none !important;
+  }
+
+  /* card section */
+  /* details card */
+  .details-card {
+    display: flex;
+    gap: 20px;
+    background-color: rgba(0, 180, 117, 0.2);
+    border-radius: 8px;
+    border: none;
+    width: 140px !important;
+    flex-shrink: 0;
+    display: inline-block;
+    margin-left: 10px;
+    margin-bottom: 7px;
+  }
+
+  .card-img img {
+    /* color: white; */
+    width: 22px;
+    height: 28px !important;
+  }
+
+  .card-title p {
+    color: #00B475;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  /* sidebar */
+  #sidebar {
+    width: 430px;
+    /* height: 949px; */
+    height: 100vh;
+    /* Full viewport height */
+    overflow-y: auto;
+    position: fixed;
+    top: 13%;
+    right: 0;
+    background: #FFFFFF;
+    padding: 20px;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    border-radius: 5px;
+
+  }
+
+  /* Custom Scrollbar Styling */
+  #sidebar::-webkit-scrollbar {
+    width: 8px;
+    /* Scrollbar width */
+  }
+
+  #sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    /* Background of the scrollbar track */
+    border-radius: 5px;
+  }
+
+  #sidebar::-webkit-scrollbar-thumb {
+    background: #a2f2cd;
+    /* Scrollbar handle color */
+    border-radius: 5px;
+  }
+
+  #sidebar::-webkit-scrollbar-thumb:hover {
+    background: #008c5f;
+    /* Darker shade on hover */
+  }
+
+  /* Close button */
+  .close-btn {
+    cursor: pointer;
+    font-size: 20px;
+    float: right;
+  }
+
+  /* Activity card */
+  .activity-card {
+    background: #e6f9f0;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  /* Status badges */
+  .details-content button {
+    width: 112px;
+    height: 30px;
+    background-color: #00B475 !important;
+    border-radius: 25px;
+    border: none;
+    margin-top: 5px;
+    padding: 3px 29px;
+    display: flex;
+    text-align: center;
+  }
+
+
+  .details-content button:hover {
+    background-color: #00B475;
+  }
+
+  .details-content button:focus {
+    box-shadow: none;
+    outline: none;
+  }
+
+  .details-content1 button {
+    width: 112px;
+    height: 30px;
+    background-color: #FFAB13 !important;
+    border-radius: 25px;
+    border: none;
+    margin-top: 5px;
+    padding: 3px 29px;
+    display: flex;
+    text-align: center;
+  }
+
+  .details-content1 button:hover {
+    background-color: #FFAB13;
+  }
+
+  .details-content1 button:focus {
+    box-shadow: none;
+    outline: none;
+  }
+
+  .activity-card p {
+    font-size: 14px;
+  }
+
+
+
+  .status-yellow {
+    background-color: #fdb827;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+  }
+</style>
+
+<body style="background-color: rgba(196, 196, 196, 0.15);
+">
+
+
+  <!-- navbar -->
+  <nav class="navbar navbar-expand-lg ">
+    <div class="container">
+      <!-- Logo -->
+      <a class="navbar-brand" href="#">
+        <img src="./assets/images/logo.png" alt="Logo">
+      </a>
+
+      <!-- Toggle button for mobile -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"><span></span></span>
+      </button>
+
+
+      <!-- Navbar Links + Right Side Items (inside the collapse) -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-5 p-5 mb-2 mb-lg-0 w-100">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Necessidade</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Gestão de Contrato</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Orçamento</a>
+          </li>
+        </ul>
+
+        <!-- Right Side Items (Move inside the menu on mobile) -->
+        <div class="d-flex align-items-center  right-items">
+          <div class="position-relative">
+            <i class="fa-regular fa-bell me-2 mt-1 bell-icon" style="color: #00B475; font-size: 22px;"></i>
+            <span class="notifi-badge">3</span> <!-- Notification Badge -->
+          </div>
+          <img src="./assets/images/Ellipse 6.png" alt="Profile" class="profile-img mx-2">
+
+          <div class="dropdown">
+            <button class="btn btn-primary-light lang-toggle" type="button" data-bs-toggle="dropdown">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg" width="20"> PT <i
+                class="fa-solid fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">English</a></li>
+              <li><a class="dropdown-item" href="#">Português</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- hero -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <div class="progress-headings d-flex justify-content-between mt-5">
+          <h5>
+            <img src="./assets/images/Icons/Icon-3.png" alt="">
+            <strong><span class="ml-text">Nome do objeto / <span class="text-primary">Fluxo de
+                  Contratação</span></span></strong>
+          </h5>
+
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="userNeed-data d-flex justify-content-end align-items-center" style="margin-top: 34px;">
+          <div class="user-id ">
+            <span class="me-lg-5">ID da necessidade: 123456</span>
+          </div>
+          <div class="progress-arrow d-flex justify-content-between">
+            <!-- <i class="fa-solid fa-angles-right ms-lg-5"></i> -->
+            <img src="./assets/images/Icons/Group-arrow.png" alt="" class="img-fluid"
+              style="width: 48px; height: 48px;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Progress Tracker -->
+  <section class="prog-tracker py-3" style="background-color:#F8F8F8;">
+    <div class="container">
+      <div class="stepper-wrapper">
+        <div class="stepper-item">
+          <input type="checkbox" id="step1" checked>
+          <label for="step1">1. Criação da Necessidade</label>
+          <div class="line"></div>
+        </div>
+        <div class="stepper-item">
+          <input type="checkbox" id="step2">
+          <label for="step2">2. Submissão pelo Requerente</label>
+          <div class="line"></div>
+        </div>
+        <div class="stepper-item">
+          <input type="checkbox" id="step3">
+          <label for="step3">3. Revisão do Dirigente</label>
+          <div class="line"></div>
+        </div>
+        <div class="stepper-item">
+          <input type="checkbox" id="step4">
+          <label for="step4">4. Aprovação pelo Núcleo</label>
+        </div>
+        <div class="stepper-item">
+          <input type="checkbox" id="step4">
+          <label for="step4">4. Aprovação pelo Núcleo</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="direct-heading mt-3 d-flex justify-content-between">
+          <h5 style="color: #4E4E4E;">Passo 1 <strong>Adjuste Direto</strong></h5>
+          <!-- <button type="button" class="btn btn-info text-white " id="sidebar-toggle">SHow Activity</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- sidebar -->
+  <div class="show-sidebar fade" id="sidebar" style="display: none;">
+
+    <div class="d-flex justify-content-between align-items-center">
+      <h4>
+        <img src="./assets/images/Icons/reload.png" alt=""> Atividade
+      </h4>
+      <span class="close-btn" id="closedBtn"><span style="color: #4E4E4E;">Fechar</span> &times;</span>
+    </div>
+
+    <!-- Activity Cards -->
+    <div class="activity-card">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="">
+          <img src="./assets/images/Icons/Ellipse 25.png" alt="">
+          <strong class="position-relative">Nome Apelido <br></strong>
+          <span class="text-muted position-absolute mt-1" style="top: 10%; left: 18%; font-size: 12px;">Cargo</span>
+        </div>
+        <button class="btn p-0" data-bs-toggle="collapse" data-bs-target="#details1">
+          <!-- <span>&#9662;</span> -->
+          <i class="fa-solid fa-angle-down"></i>
+        </button>
+      </div>
+      <div id="details1" class="collapse show">
+        <p class="mt-4"><strong>STEP 1 - Ajuste Direto</strong></p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+        <!-- details content 1 -->
+        <div class="details-content d-flex justify-content-between">
+          <p class="text-muted small">Última alteração <br> 12/01/2015 10h15</p>
+          <button type="button" class=" btn btn-primary">Status</button>
+        </div>
+
+        <!-- details content 2 -->
+        <div class="details-content1 d-flex justify-content-between">
+          <p class="text-muted small">Última alteração <br> 12/01/2015 10h15</p>
+          <button type="button" class=" btn btn-primary">Status</button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="activity-card">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="position-relative">
+          <img src="./assets/images/Icons/Ellipse 26.png" alt="">
+          <strong>Nome Apelido</strong>
+          <p class="text-muted position-absolute mt-1" style="top: 57%; left:28%; font-size: 12px;">Cargo</p>
+        </div>
+
+        <button class="btn p-0" data-bs-toggle="collapse" data-bs-target="#details2">
+          <!-- <span>&#9662;</span> -->
+          <i class="fa-solid fa-angle-down"></i>
+        </button>
+      </div>
+      <div id="details2" class="collapse">
+        <p class="mt-4"><strong>STEP 2 - Convite c/ caderno encargos</strong></p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+        <!-- details content 1 -->
+        <div class="details-content d-flex justify-content-between">
+          <p class="text-muted small">Última alteração <br> 12/01/2015 10h15</p>
+          <button type="button" class=" btn btn-primary">Status</button>
+        </div>
+
+        <!-- details content 2 -->
+        <div class="details-content1 d-flex justify-content-between">
+          <p class="text-muted small">Última alteração <br> 12/01/2015 10h15</p>
+          <button type="button" class=" btn btn-primary">Status</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Activity Cards -->
+    <div class="activity-card">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="position-relative">
+          <img src="./assets/images/Icons/Ellipse 7.png" alt="">
+          <strong>Nome Apelido</strong>
+          <p class="text-muted position-absolute mt-1" style="top: 57%; left:28%; font-size: 12px;">Cargo</p>
+        </div>
+        <button class="btn p-0" data-bs-toggle="collapse" data-bs-target="#details3">
+          <!-- <span>&#9662;</span> -->
+          <i class="fa-solid fa-angle-down"></i>
+        </button>
+      </div>
+      <div id="details3" class="collapse">
+        <p class="mt-4"><strong>STEP 1 - Ajuste Direto</strong></p>
+        <p class="text-muted small">Última alteração <br> 12/01/2015 10h15</p>
+      </div>
+    </div>
+
+    <div class="activity-card">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="position-relative">
+          <img src="./assets/images/Icons/Ellipse 25.png" alt="">
+          <strong>Nome Apelido</strong>
+          <p class="text-muted position-absolute mt-1" style="top: 57%; left:28%; font-size: 12px;">Cargo</p>
+        </div>
+        <button class="btn p-0" data-bs-toggle="collapse" data-bs-target="#details4">
+          <!-- <span>&#9662;</span> -->
+          <i class="fa-solid fa-angle-down"></i>
+        </button>
+      </div>
+      <div id="details4" class="collapse">
+        <p class="mt-4"><strong>STEP 1 - Ajuste Direto</strong></p>
+        <p class="text-muted small">Última alteração <br> 12/01/2015 10h15</p>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="direct-lab  mt-3">
+          <label for="description">Descrição</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- direct label input -->
+  <div class="container">
+    <div class="col-12">
+      <div class="direct-input mt-3 py-1" style="width: 100%; height: 62px !important;">
+        <input type="text" class="form-control" id="Criteria">
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="direct-lab  mt-3">
+          <label for="description">Anexar Documentos</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="container">
+    <div class="row">
+      <!-- upload data input -->
+      <div class="col-12 mt-3 py-2">
+        <div class="input-heading position-relative">
+          <small>Anexar documentos</small> <!-- This will be positioned on the border -->
+        </div>
+        <div class="fileUpload-input mt-4 mb-3">
+          <div class="input-border">
+            <input type="file" id="file-input" class="form-control">
+          </div>
+          <label for="file-input" class="upload-label">
+            <img src="./assets/images/Icons/input-icon.png" alt="">
+          </label>
+          <span class="fw-bold"
+            style="position: absolute; top: 78%; left: 37%; color: #3F8045; margin-top: -10px; font-size: 14px;">
+            Clicar para fazer upload <span class="text-muted">ou arrastar e soltar</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- details necessidade cards -->
+  <div class="container mb-3">
+    <!-- details row -->
+    <div class="row">
+      <div class="col-12">
+        <div class="details-heading" style="margin-top: 45px;">
+          <h5 class="fw-bold ms-2" style="color: #4E4E4E;">Detalhes da Necessidade</h5>
+        </div>
+      </div>
+    </div>
+
+    <!-- card row -->
+    <div class="row g-5 ">
+      <div class="col-sm-12 col-md-4 col-lg-2">
+        <div class="card details-card p-2" id="custom-card">
+          <div class="card-img d-flex justify-content-center py-3">
+            <img src="./assets/images/Icons/file-text-o.png" alt="">
+          </div>
+          <div class="card-title">
+            <p class="text-center">Manifestação da Necessidade</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-2">
+        <div class="card details-card p-2" id="custom-card">
+          <div class="card-img d-flex justify-content-center py-3">
+            <img src="./assets/images/Icons/euro.png" alt="">
+          </div>
+          <div class="card-title">
+            <p class="text-center">Manifestação da Necessidade</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-2">
+        <div class="card details-card p-2" id="custom-card">
+          <div class="card-img d-flex justify-content-center py-3">
+            <img src="./assets/images/Icons/tree.png" alt="">
+          </div>
+          <div class="card-title">
+            <p class="text-center">Manifestação da Necessidade</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-2">
+        <div class="card details-card p-2" id="custom-card">
+          <div class="card-img d-flex justify-content-center py-3">
+            <img src="./assets/images/Icons/files-o.png" alt="">
+          </div>
+          <div class="card-title">
+            <p class="text-center">Manifestação da Necessidade</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-2">
+        <div class="card details-card p-2" id="custom-card">
+          <div class="card-img d-flex justify-content-center py-3">
+            <img src="./assets/images/Icons/briefcase.png" alt="">
+          </div>
+          <div class="card-title">
+            <p class="text-center">Manifestação da Necessidade</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-2">
+        <div class="card details-card p-2" id="custom-card">
+          <div class="card-img d-flex justify-content-center py-3">
+            <img src="./assets/images/Icons/area-chart.png" alt="">
+          </div>
+          <div class="card-title">
+            <p class="text-center">Manifestação da Necessidade</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-2">
+        <div class="card details-card p-2" style="background-color: #00B475;" id="custom-card">
+          <div class="card-img d-flex justify-content-center py-3">
+            <img src="./assets/images/Icons/paste.png" alt="">
+          </div>
+          <div class="card-title">
+            <p class="text-center" style="color: white;">Manifestação da Necessidade</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- footer section -->
+
+  <footer style="background-color: #172629;  margin-top: auto;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mt-5">
+          <h3 class="fw-bold" style="color: white; border-bottom: 1px solid white; display: inline-block;">
+            contacte-nos
+          </h3>
+        </div>
+
+        <div class="col-md-8 mt-5">
+          <div class="quick-links">
+            <a href=""> <span>TERMOS E CONDIÇÕES</span></a>
+            <a href=""> <span>POLÍTICA DE PRIVACIDADE</span></a>
+            <a href=""> <span>POLÍTICA DE COOKIES</span></a>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-12">
+            <div class="media-icons"></div>
+            <div class="social-links">
+              <a href=""> <i class="fa-brands fa-youtube"></i></a>
+              <a href=""><i class="fa-brands fa-facebook"></i></a>
+              <a href=""> <i class="fa-brands fa-linkedin"></i></a>
+              <a href=""> <i class="fa-brands fa-twitter"></i></a>
+              <a href=""> <i class="fa-brands fa-instagram"></i></a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- custom js -->
+  <script src="index.js"></script>
+
+  <script>
+    let sidebar = document.getElementById('sidebar');
+    let closeBtn = document.getElementById('closedBtn');
+
+    // Show sidebar on page load
+    sidebar.style.display = 'block';
+    sidebar.classList.add('show');
+
+    // Close button functionality
+    closeBtn.addEventListener('click', function () {
+      sidebar.classList.remove('show'); // Fade out effect
+      setTimeout(() => (sidebar.style.display = 'none'), 300); // Hide after animation
+    });
+
+    /*
+    // Commented out toggle button functionality
+    let toggleBtn = document.getElementById('sidebar-toggle');
+    toggleBtn.addEventListener('click', function () {
+      if (!sidebar.classList.contains('show')) {
+        sidebar.style.display = 'block';
+        setTimeout(() => sidebar.classList.add('show'), 10);
+      } else {
+        sidebar.classList.remove('show');
+        setTimeout(() => (sidebar.style.display = 'none'), 300);
+      }
+    });
+    */
+
+
+
+  </script>
+</body>
+
+</html>
