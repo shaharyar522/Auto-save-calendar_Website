@@ -26,12 +26,25 @@
 </head>
 
 <style>
+  /* google webFonts */
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+
+  /* globally target */
+  * {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: "Open Sans", serif;
+  }
+
   /* navbar */
   .navbar {
     height: 80px;
     width: 100%;
     background-color: #FFFFFF;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
   }
 
   .navbar-nav {
@@ -81,6 +94,46 @@
     border: 1px solid black;
   }
 
+  .navbar-toggler-icon {
+    background-image: none !important;
+    /* Remove Bootstrap's default icon */
+    width: 30px;
+    height: 30px;
+    background-color: gray;
+    /* Change background color */
+    border-radius: 4px;
+    /* Optional: Rounded corners */
+    position: relative;
+  }
+
+  /* Create the three lines for the menu (hamburger) */
+  .navbar-toggler-icon::before,
+  .navbar-toggler-icon::after,
+  .navbar-toggler-icon span {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 20px;
+    height: 2px;
+    background-color: white;
+    /* Change icon color */
+    transform: translateX(-50%);
+  }
+
+  .navbar-toggler-icon::before {
+    top: 8px;
+  }
+
+  .navbar-toggler-icon::after {
+    bottom: 8px;
+  }
+
+  .navbar-toggler-icon span {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+
   .dropdown-menu {
     background-color: #92b8d4;
   }
@@ -108,11 +161,8 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    /* Aligns the stepper to the left */
     gap: 10px;
-    /* Adjust spacing between stepper items */
     overflow-x: auto;
-    /* Enables horizontal scrolling if needed */
     padding: 10px;
   }
 
@@ -156,7 +206,7 @@
   }
 
   .stepper-item label {
-    margin-left: 10px;
+    margin-left: 8px;
     font-size: 12px;
     color: #00B475;
     font-weight: bold;
@@ -185,6 +235,7 @@
     cursor: pointer;
     position: relative;
     transition: 0.3s;
+    padding: 8px 0px 8px 0px;
   }
 
   .sub-progress-stepper .stepper-item input[type="checkbox"]:checked {
@@ -193,14 +244,13 @@
 
   .sub-progress-stepper .stepper-item .line {
     height: 2px;
-    background-color: #00B475;
-    flex-grow: 1;
-    margin-left: 6px;
+    background-color: #4E4E4E;
+    flex-grow: 0.3;
+    margin-left: 4px;
   }
 
-  .sub-progress-stepper .stepper-item label {
-
-    font-size: 12px;
+  .sub-progress-stepper label {
+    font-size: 11px;
     color: #4E4E4E;
   }
 
@@ -229,6 +279,8 @@
   }
 
   /* juri table */
+
+
   .juri-table {
     border-radius: 8px;
     overflow: hidden;
@@ -252,16 +304,12 @@
   .juri-table tbody tr td:first-child {
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
-    background-color: red;
   }
 
   .juri-table tbody tr td:last-child {
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
-    background-color: #1a90e4;
   }
-
-
 
   .juri-table th {
     padding: 12px;
@@ -273,66 +321,6 @@
 
   .juri-table tbody tr {
     border-radius: 8px !important;
-  }
-
-  /* switch on/off toggle */
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 28px;
-  }
-
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    /* background-color: #ccc; */
-    background-color: #00B475;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 24px;
-    width: 24px;
-    bottom: 2px;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-
-  input:checked+.slider {
-    background-color: #2196F3;
-  }
-
-  input:focus+.slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
-
-  input:checked+.slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
-
-  /* Rounded sliders */
-  .slider.round {
-    border-radius: 34px;
-  }
-
-  .slider.round:before {
-    border-radius: 50%;
   }
 
   .notifi-badge {
@@ -368,7 +356,7 @@
     align-items: center;
     padding-left: 20px;
     color: white;
-    font-weight: bold;
+    font-weight: 500;
 
   }
 
@@ -378,6 +366,192 @@
 
   .custom-dropdown2 .dropdown-toggle::after {
     display: none !important;
+  }
+
+  /* switch on/off toggle */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 52px;
+    height: 30px;
+  }
+
+  .switch input {
+    opacity: 1;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #00B475;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 24px;
+    width: 24px;
+    bottom: 3px;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+
+  input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+    background-color: white;
+  }
+
+  .to-add button {
+    width: 170px;
+    height: 44px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 22px;
+  }
+
+  .Criteria-input input {
+    height: 62px;
+  }
+
+  .Criteria-input input:focus {
+    box-shadow: none;
+    outline: none;
+  }
+
+  /* upload data  input */
+  .fileUpload-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    position: relative;
+    width: 100%;
+  }
+
+  .input-border {
+    border: 2px dotted gray;
+    width: 100%;
+    height: 104px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+  }
+
+  input[type="file"] {
+    display: none;
+
+  }
+
+  .upload-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: background 0.3s ease;
+  }
+
+  .upload-label img {
+    width: 22px;
+    height: 18px;
+  }
+
+  .input-heading small {
+    position: absolute;
+    top: -7px;
+    /* left: 15px; */
+    background: white;
+    padding: 0 5px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .input-border {
+    position: relative;
+  }
+
+  .description-sub-button1 button {
+    width: 164px;
+    height: 44px;
+    border-radius: 22px;
+    border: 1px solid #00B475;
+    color: #00B475;
+  }
+
+  .description-sub-button2 button {
+    width: 164px;
+    height: 44px;
+    border-radius: 22px;
+    border: 1px solid #00B475;
+    /* color: #00B475; */
+  }
+
+  .social-links {
+    display: flex;
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+
+  .social-links a {
+    text-decoration: none !important;
+  }
+
+  .social-links i {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: white;
+    color: black !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 3px 0;
+    transition: background-color 0.5s ease-in-out;
+  }
+
+  .social-links i:hover {
+    background-color: lightgrey !important;
+  }
+
+  .quick-links span {
+    display: block;
+    padding: 3px;
+    color: #FFFFFF;
+    font-size: 13px;
+  }
+
+  .quick-links a {
+    text-decoration: none !important;
   }
 </style>
 
@@ -395,8 +569,9 @@
       <!-- Toggle button for mobile -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"><span></span></span>
       </button>
+
 
       <!-- Navbar Links + Right Side Items (inside the collapse) -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -414,7 +589,6 @@
 
         <!-- Right Side Items (Move inside the menu on mobile) -->
         <div class="d-flex align-items-center  right-items">
-          <i class="fa-regular fa-bell me-2 mt-1" style=" color: white; font-size: 22px;"></i>
           <div class="position-relative">
             <i class="fa-regular fa-bell me-2 mt-1 bell-icon" style="color: #00B475; font-size: 22px;"></i>
             <span class="notifi-badge">3</span> <!-- Notification Badge -->
@@ -583,10 +757,10 @@
 
 
   <!-- description section -->
-  <div class="container">
-    <div class="row">
+  <div class="container mb-5">
+    <div class="row p-0">
       <div class="col-12">
-        <div class="description-lab mt-2">
+        <div class="description-lab mt-2 py-2">
           <label for="description">Júri do Procedimento</label>
         </div>
       </div>
@@ -594,7 +768,7 @@
       <!-- table -->
       <section class="container py-3">
         <div class="table-responsive">
-          <table class="table juri-table text-center">
+          <table class="table table-hover juri-table text-center">
             <thead>
               <tr>
                 <th>Cargo</th>
@@ -632,20 +806,17 @@
           </table>
         </div>
       </section>
-
-
       <div class="col-12">
-        <div class="description-label mt-4">
-          <label for="description">Anexar Documentos</label>
+        <div class="description-lab mt-4 py-2">
+          <label for="description">Critérios de Adjudicação</label>
         </div>
       </div>
-
       <!-- switch on/off button -->
       <div class="container">
         <div class="row">
           <div class="col-12">
-            <div class="switch-btn-contents d-flex align-items-center mt-3">
-              <span>Avaliação Multifator?</span> <label class="switch ms-2">
+            <div class="switch-btn-contents d-flex align-items-center mt-3 py-2">
+              <span style="color: #4E4E4E; font-weight: 500;">Avaliação Multifator?</span> <label class="switch ms-2">
                 <input type="checkbox" checked>
                 <span class="slider round"></span>
               </label>
@@ -653,39 +824,106 @@
           </div>
         </div>
       </div>
+      <div class="col-12">
+        <div class="description-lab mt-4 py-2">
+          <label for="description">Fatores de Avaliação</label>
+        </div>
+      </div>
 
-
-
+      <div class="col-12">
+        <div class="to-add mt-3 py-2">
+          <div class="contents d-flex justify-content-between">
+            <h5 class="mt-1">Fatores de Avaliação</h5>
+            <button type="button" class="btn btn-primary ms-3" style="background-color: #00B475;">
+              <img src="./assets/images/Icons/plus.png" alt="">
+              Adicionar
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- <div class="col-12">
+
+    <!-- table 2 -->
+
+    <div class="table-responsive mt-2 py-2">
+      <table class="table table-hover juri-table text-center">
+        <thead>
+          <tr>
+            <th>Fatores</th>
+            <th>Descrição dos Fatores</th>
+            <th>Valoração</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Presidente</td>
+            <td>Lorem ipsum</td>
+            <td>Lorem ipsum</td>
+            <td><img src="./assets/images/Icons/Trash.png" alt=""></td>
+          </tr>
+
+
+
+        </tbody>
+      </table>
+    </div>
+    <div class="col-12">
+      <div class="description-lab mt-4 py-2">
+        <label for="description">Critério de Desempate</label>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="Criteria-input mt-4 py-2" style="width: 100%; height: 62px !important;">
+        <input type="text" class="form-control" id="Criteria">
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="description-lab mt-4 py-2">
+        <label for="description">Especificações Técnicas</label>
+      </div>
+    </div>
+
+
+    <!-- input data upload -->
+    <div class="col-12 mt-3 py-2">
+      <div class="input-heading position-relative">
+        <small>Anexar documentos</small> <!-- This will be positioned on the border -->
+      </div>
       <div class="fileUpload-input mt-4 mb-3">
         <div class="input-border">
           <input type="file" id="file-input" class="form-control">
         </div>
         <label for="file-input" class="upload-label">
-          <i class="fas fa-upload"></i>
+          <img src="./assets/images/Icons/input-icon.png" alt="">
         </label>
-        <span class="fw-bold" style="position: absolute; top: 78%; left: 32%; color: #3F8045; margin-top: -10px;">
+        <span class="fw-bold"
+          style="position: absolute; top: 78%; left: 37%; color: #3F8045; margin-top: -10px; font-size: 14px;">
           Clicar para fazer upload <span class="text-muted">ou arrastar e soltar</span>
         </span>
       </div>
-    </div> -->
+    </div>
+
+
     <!-- buttons row -->
     <div class="row">
-      <div class="col-12">
-        <div class="description-sub-button d-flex justify-content-between">
-          <button type="button" class="btn btn-outline p-2" style="border: 1px solid #00B475;"> <span class="me-3"><i
-                class="fa-solid fa-arrow-left desc-icons"></i></span>Anterior</button>
-          <button type="button" class="btn btn-success p-2"> Anterior <span><i
-                class="fa-solid fa-arrow-right desc-icons2"></i></span></button>
+      <div class="col-md-6">
+        <div class="description-sub-button1 d-flex">
+          <button type="button" class="btn btn-outline p-2">
+            <img src="./assets/images/Icons/Leading Icon.svg" alt="">
+            Anterior</button>
         </div>
       </div>
-    </div>
-    <!-- details row -->
-    <div class="row">
-      <div class="col-12">
-        <div class="details-heading mt-4">
-          <h5 class="fw-bold" style="color: #4E4E4E;">Detalhes da Necessidade</h5>
+      <div class="col-md-6">
+        <div class="description-sub-button2 d-flex justify-content-end">
+          <button type="button" class="btn btn-light me-3" style="color: #4E4E4E; border: 1px solid #4E4E4E;">
+            <img src="./assets/images/Icons/save.png" alt=""> Anterior</button>
+
+          <button type="button" class="btn btn-success p-2" style="color: white;"> Anterior <span>
+              <img src="./assets/images/Icons/Icon-right-arrow.svg" alt="">
+              </i></span></button>
         </div>
       </div>
     </div>
@@ -698,7 +936,8 @@
     <div class="container">
       <div class="row">
         <div class="col-md-4 mt-5">
-          <h3 class="fw-bold" style="color: white; border-bottom: 1px solid white; display: inline-block;">contacte-nos
+          <h3 class="fw-bold" style="color: white; border-bottom: 1px solid white; display: inline-block;">
+            contacte-nos
           </h3>
         </div>
 

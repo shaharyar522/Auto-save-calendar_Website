@@ -61,6 +61,13 @@
 /* for medium screen */
 
 @media screen and (max-width:768px) {
+  .navbar-nav {
+    gap: 0px !important;
+    padding: 4px !important;
+    margin: 0px !important;
+    text-align: center !important;
+  }
+
   .calendar-card {
     right: 30px;
 
@@ -92,7 +99,7 @@
     height: auto !important;
   }
 
-  .d-flex.align-items-center {
+  .mainBar {
     flex-direction: column !important;
     height: auto;
   }
@@ -116,5 +123,94 @@
   .line {
     width: 5px;
     height: 50px;
+  }
+
+  /* page 2 css */
+  .custom-dropdown {
+    /* background-color: red; */
+    margin-right: 15px;
+  }
+
+  .fileUpload-input span {
+    left: 12% !important;
+    font-size: 13px;
+  }
+
+  .data-table .table-head {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .data-table tbody {
+    font-size: 13px;
+  }
+
+  .second-table .table-head {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .second-table tbody {
+    font-size: 13px;
+  }
+
+  /* page 3 css */
+
+  .user-id span {
+    display: flex;
+    margin-right: 160px;
+    white-space: nowrap;
+  }
+
+  .stepper-wrapper .stepper-item label {
+    white-space: nowrap;
+  }
+
+  .sub-progress-stepper .stepper-item label {
+    white-space: nowrap;
+  }
+
+  .custom-dropdown2 button {
+    width: 100% !important;
+    margin-top: 10px;
+  }
+
+  .to-add .contents h5 {
+    font-size: 15px;
+    margin-top: 13px !important;
+  }
+
+  .userNeed-data {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .juri-table thead {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .fileUpload-input span {
+    /* margin-left: -10px; */
+    left: 14% !important;
+  }
+
+  .description-sub-button1 button {
+    /* display: block; */
+    /* width: 80px !important; */
+    width: 100% !important;
+    height: 22px !;
+  }
+
+  .description-sub-button2 button {
+    margin-top: 20px;
+    display: flex;
+    margin-right: 40px;
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px !important;
   }
 }

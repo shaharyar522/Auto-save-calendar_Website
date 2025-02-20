@@ -65,6 +65,45 @@
   border: 1px solid black;
 }
 
+/* toggle */
+.navbar-toggler-icon {
+  background-image: none !important;
+  width: 30px;
+  height: 30px;
+  background-color: gray;
+  border-radius: 4px;
+  position: relative;
+}
+
+/* Create the three lines for the menu (hamburger) */
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after,
+.navbar-toggler-icon span {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 20px;
+  height: 2px;
+  background-color: white;
+  /* Change icon color */
+  transform: translateX(-50%);
+}
+
+.navbar-toggler-icon::before {
+  top: 8px;
+}
+
+.navbar-toggler-icon::after {
+  bottom: 8px;
+}
+
+.navbar-toggler-icon span {
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* end */
+
 .dropdown-menu {
   background-color: #92b8d4;
 }
@@ -83,6 +122,8 @@
   gap: 10px;
   overflow-x: auto;
   /* padding: 10px; */
+  padding-left: 15px;
+
 }
 
 .stepper-item {
@@ -125,8 +166,9 @@
 
 .stepper-item label {
   margin-left: 2px;
-  font-size: 12px;
+  font-size: 13px;
   color: #00B475;
+  font-weight: bold;
 }
 
 .stepper-item .line {
@@ -348,14 +390,12 @@ input[type="file"] {
 .data-table tbody tr td:first-child {
   border-top-left-radius: 8px !important;
   border-bottom-left-radius: 8px !important;
-  background-color: magenta;
 }
 
 
 .data-table tbody tr td:last-child {
   border-top-right-radius: 8px !important;
   border-bottom-right-radius: 8px !important;
-  background-color: #009A9F;
 }
 
 

@@ -112,8 +112,8 @@
       align-items: center;
       justify-content: flex-start;
       gap: 10px;
-      overflow-x: auto;
-      /* padding: 10px; */
+      overflow-x: hidden;
+      margin-top: 10px;
     }
 
     .step-item {
@@ -155,16 +155,16 @@
     }
 
     .step-item label {
-      margin-left: 5px;
-      font-size: 12px;
+      font-size: 11px;
       color: #00B475;
+      white-space: nowrap;
     }
 
     .step-item .lines {
-      width: 20px;
+      width: 10px;
       height: 1px;
       background-color: #00B475;
-      flex-grow: 1;
+      /* flex-grow: 0.3; */
     }
   </style>
 </head>
@@ -179,11 +179,10 @@
       <a class="navbar-brand" href="#">
         <img src="./assets/images/logo.png" alt="Logo">
       </a>
-
       <!-- Toggle button for mobile -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon" style="background-color:gray; color: white; padding: 8px;"></span>
+        <span class="navbar-toggler-icon"><span></span></span>
       </button>
 
       <!-- Navbar Links + Right Side Items (inside the collapse) -->
