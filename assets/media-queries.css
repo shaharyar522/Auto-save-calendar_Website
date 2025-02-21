@@ -55,6 +55,10 @@
     flex: 0 0 auto;
     width: 13.666667%;
   }
+
+  .user-id span {
+    margin-right: 128px !important;
+  }
 }
 
 

@@ -199,6 +199,7 @@
   margin-left: 4px;
   /* Adjust the value as needed */
   display: inline-block;
+  font-size: 22px;
 }
 
 
@@ -230,8 +231,8 @@
 }
 
 .progress-arrow i {
-  width: 32px;
-  height: 32px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background-color: rgba(0, 180, 117, 0.4);
   color: #00B475;

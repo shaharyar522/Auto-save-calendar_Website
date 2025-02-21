@@ -232,9 +232,9 @@
     border-bottom-left-radius: 8px !important;
   }
 
-  .juri-table thead tr:first-child th:last-child {
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+  .docs-table thead tr:first-child th:last-child {
+    border-top-right-radius: 8px !important;
+    border-bottom-right-radius: 8px !important;
   }
 
   .juri-table tbody tr td:first-child {
@@ -334,9 +334,13 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Necessidade</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Gestão de Contrato</a>
+          <li class="nav-item" style="position: relative; display: inline-block;">
+            <a class="nav-link" href="index.html"
+              style="border-bottom: 1px solid #4E4E4E; display: inline-block; padding: 6px 0; text-decoration: none;">
+              Gestão de Contrato
+            </a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="#">Orçamento</a>
           </li>
@@ -373,33 +377,36 @@
         <div class="ms-2" style="border-radius: 16px;">
           <img src="./assets/images/Icons/Icon-move.png" alt="">
           <strong class="ms-1 mt-1">Gestão de Contrato</strong> <br>
-          <a href="#" class="text-primary text-decoration-none "
-            style="color: #4E4E4E !important; margin-left: 36px;">Documentos
-            Financeiros</a>
+          <a href="#" class="text-primary text-decoration-none"
+            style="color: #4E4E4E !important; margin-left: 36px;">Documentos Financeiros</a>
         </div>
       </div>
 
       <div id="financeDocs" class="collapse show mt-2">
-        <table class="docs-table table table-borderless table-responsive">
-          <thead>
-            <tr>
-              <th>Ver</th>
-              <th>Data</th>
-              <th>Objeto</th>
-              <th>Entidade</th>
-              <th>Requerente</th>
-              <th>Concluído</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td colspan="6" class="empty-message">Sem necessidades para este mês</td>
-            </tr>
-          </tbody>
-        </table>
+        <!-- Wrapper for responsiveness -->
+        <div class="table-responsive">
+          <table class="docs-table table table-borderless">
+            <thead>
+              <tr>
+                <th>Ver</th>
+                <th>Data</th>
+                <th>Objeto</th>
+                <th>Entidade</th>
+                <th>Requerente</th>
+                <th>Concluído</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="6" class="empty-message">Sem necessidades para este mês</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

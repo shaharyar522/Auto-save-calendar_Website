@@ -124,16 +124,12 @@
 .hero {
   position: relative;
   width: 100%;
-  /* Ensures full viewport width */
-  height: 960px;
   /* Keep your specified height */
   background: url('./images/Hero-bg.png') no-repeat center center/cover;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Optional: Center content */
   color: white;
-
 }
 
 .overlay {
