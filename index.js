@@ -25,7 +25,7 @@ function renderCalendar() {
     weekDays[todayDayIndex].classList.add("highlighted-day");
   }
 
-  // Create empty cells for alignment
+  // Create empty cells for alignmentF
   for (let i = 0; i < firstDay; i++) {
     let emptyCell = document.createElement("div");
     emptyCell.classList.add("day");
@@ -61,7 +61,7 @@ function renderCalendar() {
   }
 
 
-}
+}                                                                           
 
 function changeMonth(direction) {
   currentDate.setMonth(currentDate.getMonth() + direction);

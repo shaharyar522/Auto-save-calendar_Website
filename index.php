@@ -1,3 +1,40 @@
+<?php
+$conn = new mysqli("localhost", "root", "", "calendar");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $date = $_POST['date'];
+    $event = trim($_POST['event']); // Trim to remove extra spaces
+
+    if (!empty($date) && !empty($event)) {
+        // Check if an event already exists for this date
+        $stmt = $conn->prepare("SELECT id FROM events WHERE event_date = ?");
+        $stmt->bind_param("s", $date);
+        $stmt->execute();
+        $stmt->store_result();
+
+        if ($stmt->num_rows > 0) {
+            // Update the existing event
+            $query = $conn->prepare("UPDATE events SET event_text = ? WHERE event_date = ?");
+            $query->bind_param("ss", $event, $date);
+        } else {
+            // Insert new event
+            $query = $conn->prepare("INSERT INTO events (event_date, event_text) VALUES (?, ?)");
+            $query->bind_param("ss", $date, $event);
+        }
+
+        if ($query->execute()) {
+            echo json_encode(["status" => "success", "message" => "Event saved successfully!", "event" => $event, "date" => $date]);
+        } else {
+            echo json_encode(["status" => "error", "message" => "Failed to save event!"]);
+        }
+    } else {
+        echo json_encode(["status" => "error", "message" => "Event text cannot be empty!"]);
+    }
+    exit();
+}
+?>
+
+
 <!doctype html>
 <html lang="en">
 
@@ -90,6 +127,8 @@
       <p class="d-block" style="position: relative; top: 210px; font-size: 32px;">Entidade A.</p>
     </div>
 
+    <!-- start calendar  -->
+
     <div class="calendar-card">
       <div class="calendar-header">
         <small class="mb-3 d-block" style="color: #2A6B2F;">Calendário</small>
@@ -111,15 +150,134 @@
       </div>
       <div class="calendar-days" id="calendarDays"></div>
       <div class="event-box" id="eventDetails">
-        <strong>17 Janeiro</strong><br>
-        <small> Necessidade: ID 123456 </small><br>
-        <small> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          lorem200
-        </small>
-
+        <strong id="selectedDate">No Date Selected</strong><br>
+        <textarea id="eventText" class="form-control mt-2" placeholder="Enter event details..."></textarea>
       </div>
     </div>
   </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+  <script>
+   $(document).ready(function () {
+    $(".calendar-days").on("click", ".day", function () {
+        let selectedDate = $(this).data("date");
+        $("#selectedDate").text(selectedDate);
+        $("#eventText").val("");
+
+        $.post("index.php", { date: selectedDate }, function (response) {
+            let data = JSON.parse(response);
+            $("#eventText").val(data.event);
+        });
+    });
+
+    $("#eventText").blur(function () {  // Trigger on click away
+        let eventText = $(this).val();
+        let selectedDate = $("#selectedDate").text();
+
+        if (selectedDate && eventText.trim() !== "") {
+            $.post("index.php", { date: selectedDate, event: eventText }, function (response) {
+                let data = JSON.parse(response);
+                Swal.fire({
+                    icon: data.status === "success" ? "success" : "error",
+                    title: data.message
+                });
+            });
+        }
+    });
+});
+
+  </script>
+<script >
+// uay hmaray pass  jab clendar par clik kartian hain tu us ka background color blue hn  jata hina 
+
+// wo js code hian 
+
+document.addEventListener("DOMContentLoaded", function () {
+    const calendarDays = document.getElementById("calendarDays");
+    const selectedDateText = document.getElementById("selectedDate");
+    const eventText = document.getElementById("eventText");
+    const monthYearText = document.getElementById("monthYear");
+    let selectedDate = null;
+    let currentDate = new Date();
+
+    function generateCalendar(year, month) {
+        calendarDays.innerHTML = "";
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        monthYearText.textContent = `${currentDate.toLocaleString('default', { month: 'long' })} ${year}`;
+        
+        for (let i = 0; i < firstDay; i++) {
+            let emptyDiv = document.createElement("div");
+            emptyDiv.classList.add("empty");
+            calendarDays.appendChild(emptyDiv);
+        }
+        
+        for (let day = 1; day <= daysInMonth; day++) {
+            let dayDiv = document.createElement("div");
+            dayDiv.classList.add("day");
+            dayDiv.textContent = day;
+            dayDiv.dataset.date = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+
+            dayDiv.addEventListener("click", function () {
+                document.querySelectorAll(".day").forEach(d => {
+                    d.classList.remove("selected");
+                    d.style.backgroundColor = "";
+                });
+
+                this.classList.add("selected");
+                this.style.backgroundColor = "blue";
+                selectedDate = this.dataset.date;
+                selectedDateText.textContent = selectedDate;
+
+                $.ajax({
+                    url: "fetch_event.php",
+                    type: "POST",
+                    data: { date: selectedDate },
+                    success: function (response) {
+                        eventText.value = response.trim();
+                    }
+                });
+            });
+
+            calendarDays.appendChild(dayDiv);
+        }
+    }
+
+    function changeMonth(step) {
+        currentDate.setMonth(currentDate.getMonth() + step);
+        generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+    }
+
+    document.querySelector(".fa-chevron-left").addEventListener("click", function () {
+        changeMonth(-1);
+    });
+
+    document.querySelector(".fa-chevron-right").addEventListener("click", function () {
+        changeMonth(1);
+    });
+
+    generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+
+    eventText.addEventListener("blur", function () {
+        if (selectedDate && eventText.value.trim() !== "") {
+            $.ajax({
+                url: "save_event.php",
+                type: "POST",
+                data: { date: selectedDate, event: eventText.value },
+                success: function (response) {
+                    Swal.fire("Success", "Your data has been saved!", "success");
+                }
+            });
+        }
+    });
+});
+</script>
+
+  <!-- End calendar  -->
+
+
 
 
   <!-- bar chart section -->
@@ -329,12 +487,30 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script>
-
-    const barData = [
-      { value: 0.25, width: "210px", height: "50px", color: "#0A5462" },
-      { value: 0.20, width: "190px", height: "50px", color: "#235A9E" },
-      { value: 0.10, width: "90px", height: "50px", color: "#00C9A7" },
-      { value: 0.08, width: "50px", height: "50px", color: "#16B46F" }
+    const barData = [{
+        value: 0.25,
+        width: "210px",
+        height: "50px",
+        color: "#0A5462"
+      },
+      {
+        value: 0.20,
+        width: "190px",
+        height: "50px",
+        color: "#235A9E"
+      },
+      {
+        value: 0.10,
+        width: "90px",
+        height: "50px",
+        color: "#00C9A7"
+      },
+      {
+        value: 0.08,
+        width: "50px",
+        height: "50px",
+        color: "#16B46F"
+      }
     ];
 
     const barChartContainer = document.getElementById("bar-chart");
@@ -383,21 +559,22 @@
       data: {
         labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
         datasets: [{
-          data: [2.4, 2.4, 0.4, 3, 1.6, 3.5],
-          borderColor: '#235A9E',
-          backgroundColor: '#fff',
-          borderWidth: 2,
-          pointBackgroundColor: ['#00C9A7', '#00C9A7', '#00C9A7', '#00C9A7', '#00C9A7', '#fff'],
-          pointRadius: [5, 5, 5, 5, 5, 8],
-          label: 'Line Dataset', // Ensure every dataset has a label
-        },
-        {
-          type: 'bar',
-          data: [null, null, null, null, null, 4],
-          backgroundColor: gradient,
-          barThickness: 50,
-          label: 'Bar Dataset', // Ensure every dataset has a label
-        }]
+            data: [2.4, 2.4, 0.4, 3, 1.6, 3.5],
+            borderColor: '#235A9E',
+            backgroundColor: '#fff',
+            borderWidth: 2,
+            pointBackgroundColor: ['#00C9A7', '#00C9A7', '#00C9A7', '#00C9A7', '#00C9A7', '#fff'],
+            pointRadius: [5, 5, 5, 5, 5, 8],
+            label: 'Line Dataset', // Ensure every dataset has a label
+          },
+          {
+            type: 'bar',
+            data: [null, null, null, null, null, 4],
+            backgroundColor: gradient,
+            barThickness: 50,
+            label: 'Bar Dataset', // Ensure every dataset has a label
+          }
+        ]
       },
       options: {
         responsive: true,
@@ -429,9 +606,6 @@
         }
       }
     });
-
-
-
   </script>
 </body>
 
