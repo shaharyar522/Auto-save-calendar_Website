@@ -2,17 +2,25 @@
 $conn = new mysqli("localhost", "root", "", "calendar");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $date = $_POST['date']; // Date received in DD-MM-YYYY format
-    $event = trim($_POST['event']); // Remove extra spaces
+    $date = $_POST['date'];
+    $event = trim($_POST['event']); // Trim to remove extra spaces
 
     if (!empty($date) && !empty($event)) {
-        // Convert DD-MM-YYYY to YYYY-MM-DD for MySQL
-        $date_parts = explode("-", $date);
-        $formatted_date = $date_parts[2] . "-" . $date_parts[1] . "-" . $date_parts[0]; // YYYY-MM-DD
+        // Check if an event already exists for this date
+        $stmt = $conn->prepare("SELECT id FROM events WHERE event_date = ?");
+        $stmt->bind_param("s", $date);
+        $stmt->execute();
+        $stmt->store_result();
 
-        // Insert new event
-        $query = $conn->prepare("INSERT INTO events (event_date, event_text) VALUES (?, ?)");
-        $query->bind_param("ss", $formatted_date, $event);
+        if ($stmt->num_rows > 0) {
+            // Update the existing event
+            $query = $conn->prepare("UPDATE events SET event_text = ? WHERE event_date = ?");
+            $query->bind_param("ss", $event, $date);
+        } else {
+            // Insert new event
+            $query = $conn->prepare("INSERT INTO events (event_date, event_text) VALUES (?, ?)");
+            $query->bind_param("ss", $date, $event);
+        }
 
         if ($query->execute()) {
             echo json_encode(["status" => "success", "message" => "Event saved successfully!", "event" => $event, "date" => $date]);
@@ -24,8 +32,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     exit();
 }
-?>
 
+
+?>
 
 
 <!doctype html>
@@ -217,10 +226,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let dayDiv = document.createElement("div");
             dayDiv.classList.add("day");
             dayDiv.textContent = day;
-
-            // Store date in DD-MM-YYYY format
-            let formattedDate = `${day.toString().padStart(2, '0')}-${(month + 1).toString().padStart(2, '0')}-${year}`;
-            dayDiv.dataset.date = formattedDate;
+            dayDiv.dataset.date = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 
             dayDiv.addEventListener("click", function () {
                 document.querySelectorAll(".day").forEach(d => {
@@ -233,7 +239,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 selectedDate = this.dataset.date;
                 selectedDateText.textContent = selectedDate;
 
-                // Fetch event from database
                 $.ajax({
                     url: "fetch_event.php",
                     type: "POST",
@@ -265,7 +270,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     eventText.addEventListener("blur", function () {
         if (selectedDate && eventText.value.trim() !== "") {
-            // Save event in database
             $.ajax({
                 url: "save_event.php",
                 type: "POST",
@@ -277,7 +281,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-
 </script>
 
   <!-- End calendar  -->
