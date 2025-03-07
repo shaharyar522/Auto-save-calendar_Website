@@ -2,6 +2,7 @@
 $conn = new mysqli("localhost", "root", "", "calendar");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+<<<<<<< HEAD
     $date = $_POST['date']; // Date received in DD-MM-YYYY format
     $event = trim($_POST['event']); // Remove extra spaces
 
@@ -23,14 +24,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo json_encode(["status" => "error", "message" => "Event text cannot be empty!"]);
     }
     exit();
+=======
+    $date = $_POST['date'];
+    $event = isset($_POST['event']) ? trim($_POST['event']) : '';
+
+    if (!empty($date)) {
+        // Convert date from DD-MM-YYYY to YYYY-MM-DD
+        $date_parts = explode("-", $date);
+        $formatted_date = $date_parts[2] . "-" . $date_parts[1] . "-" . $date_parts[0];
+
+        if ($event === '') {
+            // Delete event if empty
+            $query = $conn->prepare("DELETE FROM events WHERE event_date = ?");
+            $query->bind_param("s", $formatted_date);
+        } else {
+            // Check if event already exists
+            $check_query = $conn->prepare("SELECT * FROM events WHERE event_date = ?");
+            $check_query->bind_param("s", $formatted_date);
+            $check_query->execute();
+            $result = $check_query->get_result();
+
+            if ($result->num_rows > 0) {
+                // Update event if it exists
+                $query = $conn->prepare("UPDATE events SET event_text = ? WHERE event_date = ?");
+                $query->bind_param("ss", $event, $formatted_date);
+            } else {
+                // Insert new event
+                $query = $conn->prepare("INSERT INTO events (event_date, event_text) VALUES (?, ?)");
+                $query->bind_param("ss", $formatted_date, $event);
+            }
+        }
+
+        if ($query->execute()) {
+            echo json_encode(["status" => "success", "message" => ($event === '' ? "Event deleted successfully!" : "Event saved successfully!")]);
+        } else {
+            echo json_encode(["status" => "error", "message" => "Failed to process request!"]);
+        }
+    }
+>>>>>>> 3e80858 (Enhanced Date Selection & Update Features | Code Refinements)
 }
 ?>
 
 
 
+<<<<<<< HEAD
 <!doctype html>
 <html lang="en">
 
+=======
+
+<!doctype html>
+<html lang="en">
+>>>>>>> 3e80858 (Enhanced Date Selection & Update Features | Code Refinements)
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -120,6 +165,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <p class="d-block" style="position: relative; top: 210px; font-size: 32px;">Entidade A.</p>
     </div>
 
+<<<<<<< HEAD
     <!-- start calendar  -->
 
     <div class="calendar-card">
@@ -132,6 +178,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
       </div>
       <div class="day-names">
+=======
+
+
+    <!-- start calendar  -->
+    <div class="calendar-card">
+    <div class="calendar-header">
+        <small class="mb-3 d-block" style="color: #2A6B2F;">Calendário</small>
+        <div class="nav-icons d-flex justify-content-between">
+            <i class="fa-solid fa-chevron-left"></i>
+            <small id="monthYear"></small>
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+    </div>
+    <div class="day-names">
+>>>>>>> 3e80858 (Enhanced Date Selection & Update Features | Code Refinements)
         <div class="weekday">Sun</div>
         <div class="weekday">Mon</div>
         <div class="weekday">Tue</div>
@@ -139,6 +200,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="weekday">Thu</div>
         <div class="weekday">Fri</div>
         <div class="weekday">Sat</div>
+<<<<<<< HEAD
 
       </div>
       <div class="calendar-days" id="calendarDays"></div>
@@ -148,6 +210,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
     </div>
     
+=======
+    </div>
+    <div class="calendar-days" id="calendarDays"></div>
+    <div class="event-box" id="eventDetails">
+        <strong id="selectedDate">No Date Selected</strong><br>
+        <textarea id="eventText" class="form-control mt-2" placeholder="Enter event details..."></textarea>
+    </div>
+</div>
+
+
+
+ 
+>>>>>>> 3e80858 (Enhanced Date Selection & Update Features | Code Refinements)
   </div>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -185,10 +260,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 });
 
   </script>
+<<<<<<< HEAD
 
   
 
 
+=======
+>>>>>>> 3e80858 (Enhanced Date Selection & Update Features | Code Refinements)
 <script >
 // uay hmaray pass  jab clendar par clik kartian hain tu us ka background color blue hn  jata hina 
 // wo js code hian 
@@ -218,7 +296,10 @@ document.addEventListener("DOMContentLoaded", function () {
             dayDiv.classList.add("day");
             dayDiv.textContent = day;
 
+<<<<<<< HEAD
             // Store date in DD-MM-YYYY format
+=======
+>>>>>>> 3e80858 (Enhanced Date Selection & Update Features | Code Refinements)
             let formattedDate = `${day.toString().padStart(2, '0')}-${(month + 1).toString().padStart(2, '0')}-${year}`;
             dayDiv.dataset.date = formattedDate;
 
@@ -234,6 +315,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 selectedDateText.textContent = selectedDate;
 
                 // Fetch event from database
+<<<<<<< HEAD
                 $.ajax({
                     url: "fetch_event.php",
                     type: "POST",
@@ -242,6 +324,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         eventText.value = response.trim();
                     }
                 });
+=======
+                fetchEvent(selectedDate);
+>>>>>>> 3e80858 (Enhanced Date Selection & Update Features | Code Refinements)
             });
 
             calendarDays.appendChild(dayDiv);
@@ -253,6 +338,38 @@ document.addEventListener("DOMContentLoaded", function () {
         generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
     }
 
+<<<<<<< HEAD
+=======
+    function fetchEvent(date) {
+        $.ajax({
+            url: "fetch_event.php",
+            type: "POST",
+            data: { date: date },
+            success: function (response) {
+                let data = JSON.parse(response);
+                eventText.value = data.event;
+            }
+        });
+    }
+
+    eventText.addEventListener("blur", function () {
+        if (selectedDate && eventText.value.trim() !== "") {
+            $.ajax({
+                url: "save_event.php",
+                type: "POST",
+                data: { date: selectedDate, event: eventText.value },
+                success: function (response) {
+                    let data = JSON.parse(response);
+                    Swal.fire({
+                        icon: data.status === "success" ? "success" : "error",
+                        title: data.message
+                    });
+                }
+            });
+        }
+    });
+
+>>>>>>> 3e80858 (Enhanced Date Selection & Update Features | Code Refinements)
     document.querySelector(".fa-chevron-left").addEventListener("click", function () {
         changeMonth(-1);
     });
@@ -262,6 +379,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+<<<<<<< HEAD
 
     eventText.addEventListener("blur", function () {
         if (selectedDate && eventText.value.trim() !== "") {
@@ -278,6 +396,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+=======
+});
+
+
+>>>>>>> 3e80858 (Enhanced Date Selection & Update Features | Code Refinements)
 </script>
 
   <!-- End calendar  -->
