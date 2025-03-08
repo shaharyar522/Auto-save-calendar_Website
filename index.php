@@ -1,47 +1,4 @@
-<?php
-$conn = new mysqli("localhost", "root", "", "calendar");
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $date = $_POST['date'];
-    $event = isset($_POST['event']) ? trim($_POST['event']) : '';
-
-    if (!empty($date)) {
-        // Convert date from DD-MM-YYYY to YYYY-MM-DD
-        $date_parts = explode("-", $date);
-        $formatted_date = $date_parts[2] . "-" . $date_parts[1] . "-" . $date_parts[0];
-
-        if ($event === '') {
-            // Delete event if empty
-            $query = $conn->prepare("DELETE FROM events WHERE event_date = ?");
-            $query->bind_param("s", $formatted_date);
-        } else {
-            // Check if event already exists
-            $check_query = $conn->prepare("SELECT * FROM events WHERE event_date = ?");
-            $check_query->bind_param("s", $formatted_date);
-            $check_query->execute();
-            $result = $check_query->get_result();
-
-            if ($result->num_rows > 0) {
-                // Update event if it exists
-                $query = $conn->prepare("UPDATE events SET event_text = ? WHERE event_date = ?");
-                $query->bind_param("ss", $event, $formatted_date);
-            } else {
-                // Insert new event
-                $query = $conn->prepare("INSERT INTO events (event_date, event_text) VALUES (?, ?)");
-                $query->bind_param("ss", $formatted_date, $event);
-            }
-        }
-
-        if ($query->execute()) {
-            echo json_encode(["status" => "success", "message" => ($event === '' ? "Event deleted successfully!" : "Event saved successfully!")]);
-        } else {
-            echo json_encode(["status" => "error", "message" => "Failed to process request!"]);
-        }
-    }
-}
-
-
-?>
 
 
 
@@ -175,36 +132,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
 
   <!-- uay j query hian jo ky without page refersh data inserted hnta hain -->
-  <script>
-   $(document).ready(function () {
-    $(".calendar-days").on("click", ".day", function () {
-        let selectedDate = $(this).data("date");
-        $("#selectedDate").text(selectedDate);
-        $("#eventText").val("");
 
-        $.post("index.php", { date: selectedDate }, function (response) {
-            let data = JSON.parse(response);
-            $("#eventText").val(data.event);
-        });
-    });
-
-    $("#eventText").blur(function () {  // Trigger on click away
-        let eventText = $(this).val();
-        let selectedDate = $("#selectedDate").text();
-
-        if (selectedDate && eventText.trim() !== "") {
-            $.post("index.php", { date: selectedDate, event: eventText }, function (response) {
-                let data = JSON.parse(response);
-                Swal.fire({
-                    icon: data.status === "success" ? "success" : "error",
-                    title: data.message
-                });
-            });
-        }
-    });
-});
-
-  </script>
 <script >
 // uay hmaray pass  jab clendar par clik kartian hain tu us ka background color blue hn  jata hina 
 // wo js code hian 
@@ -216,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const monthYearText = document.getElementById("monthYear");
     let selectedDate = null;
     let currentDate = new Date();
+    let isSaving = false;  // Prevents duplicate insertions
 
     function generateCalendar(year, month) {
         calendarDays.innerHTML = "";
@@ -238,17 +167,11 @@ document.addEventListener("DOMContentLoaded", function () {
             dayDiv.dataset.date = formattedDate;
 
             dayDiv.addEventListener("click", function () {
-                document.querySelectorAll(".day").forEach(d => {
-                    d.classList.remove("selected");
-                    d.style.backgroundColor = "";
-                });
-
+                document.querySelectorAll(".day").forEach(d => d.classList.remove("selected"));
                 this.classList.add("selected");
-                this.style.backgroundColor = "blue";
                 selectedDate = this.dataset.date;
                 selectedDateText.textContent = selectedDate;
 
-                // Fetch event from database
                 fetchEvent(selectedDate);
             });
 
@@ -261,33 +184,42 @@ document.addEventListener("DOMContentLoaded", function () {
         generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
     }
 
-    function fetchEvent(date) {
-        $.ajax({
-            url: "fetch_event.php",
-            type: "POST",
-            data: { date: date },
-            success: function (response) {
-                let data = JSON.parse(response);
-                eventText.value = data.event;
-            }
-        });
+    async function fetchEvent(date) {
+        try {
+            let response = await fetch("fetch_event.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `date=${date}`
+            });
+            let data = await response.json();
+            eventText.value = data.event || "";
+        } catch (error) {
+            console.error("Error fetching event:", error);
+        }
+    }
+
+    async function saveEvent() {
+        if (!selectedDate || isSaving) return;
+        isSaving = true;
+
+        let eventValue = eventText.value.trim();
+        try {
+            let response = await fetch("save_event.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `date=${selectedDate}&event=${encodeURIComponent(eventValue)}`
+            });
+            let data = await response.json();
+            Swal.fire({ icon: data.status === "success" ? "success" : "error", title: data.message });
+        } catch (error) {
+            console.error("Error saving event:", error);
+        }
+
+        isSaving = false;
     }
 
     eventText.addEventListener("blur", function () {
-        if (selectedDate && eventText.value.trim() !== "") {
-            $.ajax({
-                url: "save_event.php",
-                type: "POST",
-                data: { date: selectedDate, event: eventText.value },
-                success: function (response) {
-                    let data = JSON.parse(response);
-                    Swal.fire({
-                        icon: data.status === "success" ? "success" : "error",
-                        title: data.message
-                    });
-                }
-            });
-        }
+        saveEvent();
     });
 
     document.querySelector(".fa-chevron-left").addEventListener("click", function () {
@@ -300,6 +232,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
 });
+
 
 
 </script>
