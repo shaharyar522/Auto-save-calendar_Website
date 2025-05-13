@@ -25,6 +25,11 @@
   <!-- media Queries css-->
   <link rel="stylesheet" href="assets/media-queries.css">
 
+  <!-- sweet alert -->
+   <!-- Animate.css for smooth animations -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+
 
   <title>Recuperar</title>
 </head>
@@ -144,20 +149,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const monthYearText = document.getElementById("monthYear");
     let selectedDate = null;
     let currentDate = new Date();
-    let isSaving = false;  // Prevents duplicate insertions
+    let isSaving = false;
 
     function generateCalendar(year, month) {
         calendarDays.innerHTML = "";
         const firstDay = new Date(year, month, 1).getDay();
         const daysInMonth = new Date(year, month + 1, 0).getDate();
         monthYearText.textContent = `${currentDate.toLocaleString('default', { month: 'long' })} ${year}`;
-        
+
         for (let i = 0; i < firstDay; i++) {
             let emptyDiv = document.createElement("div");
             emptyDiv.classList.add("empty");
             calendarDays.appendChild(emptyDiv);
         }
-        
+
         for (let day = 1; day <= daysInMonth; day++) {
             let dayDiv = document.createElement("div");
             dayDiv.classList.add("day");
@@ -167,8 +172,12 @@ document.addEventListener("DOMContentLoaded", function () {
             dayDiv.dataset.date = formattedDate;
 
             dayDiv.addEventListener("click", function () {
-                document.querySelectorAll(".day").forEach(d => d.classList.remove("selected"));
-                this.classList.add("selected");
+                
+                document.querySelectorAll(".day").forEach(d => d.style.backgroundColor = "");
+
+               
+                this.style.backgroundColor = "#00cdf4";
+
                 selectedDate = this.dataset.date;
                 selectedDateText.textContent = selectedDate;
 
@@ -210,7 +219,27 @@ document.addEventListener("DOMContentLoaded", function () {
                 body: `date=${selectedDate}&event=${encodeURIComponent(eventValue)}`
             });
             let data = await response.json();
-            Swal.fire({ icon: data.status === "success" ? "success" : "error", title: data.message });
+
+            // ✅ SweetAlert with Animate.css Styling ✅
+            Swal.fire({
+                title: data.message,
+                icon: data.status === "success" ? "success" : "error",
+                showClass: {
+                    popup: `
+                      animate__animated
+                      animate__fadeInUp
+                      animate__faster
+                    `
+                },
+                hideClass: {
+                    popup: `
+                      animate__animated
+                      animate__fadeOutDown
+                      animate__faster
+                    `
+                }
+            });
+
         } catch (error) {
             console.error("Error saving event:", error);
         }
@@ -232,6 +261,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
 });
+
 
 
 
